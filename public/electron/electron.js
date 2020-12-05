@@ -17,7 +17,9 @@ function createWindow() {
             preload: path.join(__dirname, 'preload.js'),
         },
     });
-    mainWindow.webContents.openDevTools();
+    if(isDev){
+        mainWindow.webContents.openDevTools();
+    }
     mainWindow.loadURL(
         isDev
             ? "http://localhost:3000"

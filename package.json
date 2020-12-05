@@ -12,6 +12,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "styled-components": "^5.2.1",
     "wait-on": "^5.2.0",
     "web-vitals": "^0.2.4"
   },
@@ -23,7 +24,7 @@
     "electron-build": "electron-builder",
     "release": "yarn react-build && electron-builder --publish=always",
     "build": "yarn react-build && yarn electron-build",
-    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electromon .\""
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +61,7 @@
     "copyright": "Copyright © 2020 Cristian Villafañe"
   },
   "devDependencies": {
+    "electromon": "^1.0.10",
     "electron": "^11.0.3",
     "electron-builder": "^22.9.1"
   }
