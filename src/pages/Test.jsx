@@ -14,24 +14,19 @@ const StyledAllFacesContainer = styled.div`
     box-sizing: border-box;
 
     @media ${brakpoints.mobile} { 
-        grid-template-columns: repeat(1, 1fr); 
-        grid-gap: 2em;
+        grid-template-columns: repeat(2, 1fr); 
+        margin: 1% 2% 0 2%;
+        width: 96%;
     }
 
     @media ${brakpoints.tablet} { 
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(3, 1fr); 
+        margin: 0 3% 0 3%;
+        width: 94%;
     }
 
     @media ${brakpoints.desktop} { 
-        grid-template-columns: repeat(3, 1fr); ;
-    }
-
-    @media ${brakpoints.desktopL} { 
-        grid-template-columns: repeat(4, 1fr); 
-    }
-
-    @media ${brakpoints.desktopXL} { 
-        grid-template-columns: repeat(4, 1fr); 
+        grid-template-columns: repeat(4, 1fr); ;
         margin: 0 5% 0 5%;
         width: 90%;
     }
