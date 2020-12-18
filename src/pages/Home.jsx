@@ -22,6 +22,8 @@ function Home() {
             <h1>Home</h1>
             <p>hola</p>
             <Link to={paths.test}>Test</Link>
+            <Link to={paths.userForm}>Form</Link>
+
         </div>
     );
 }

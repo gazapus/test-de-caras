@@ -1,6 +1,7 @@
 const paths = {
     home: '/',
-    test: '/test'
+    test: '/test',
+    userForm: '/userform'
 }
 
 export default paths;
