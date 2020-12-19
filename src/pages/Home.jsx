@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { channels } from '../../src/shared/constants';
+//import { useEffect } from 'react';
+//import { channels } from '../../src/shared/constants';
 import paths from '../utils/paths'
 import { Link } from 'react-router-dom';
-
-const { ipcRenderer } = window;
+import AppBar from '../components/AppBar';
+//const { ipcRenderer } = window;
 
 function Home() {
     /*
@@ -19,6 +19,7 @@ function Home() {
     */
     return (
         <div>
+            <AppBar/>
             <h1>Home</h1>
             <p>hola</p>
             <Link to={paths.test}>Test</Link>

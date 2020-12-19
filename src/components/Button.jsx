@@ -7,6 +7,7 @@ function setSize(size) {
         case "small": width = '10em'; height = "2.5em"; break;
         case "medium": width = '12em'; height = "3em"; break;
         case "large": width = '20em'; height = "3.5em"; break;
+        default: width= '12em';
     }
     return { width, height };
 }

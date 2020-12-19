@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import paths from '../utils/paths'
-import { Link } from 'react-router-dom';
+//import paths from '../utils/paths'
+//import { Link } from 'react-router-dom';
 import FaceGroup from '../components/FaceGroup';
 import faces from '../faces';
 import styled from 'styled-components';
