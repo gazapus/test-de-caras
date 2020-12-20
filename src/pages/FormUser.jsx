@@ -12,6 +12,7 @@ import {
     StyledCheckboxesContainer
 } from '../styles/StyledForm';
 import Button from '../components/Button';
+import AppBar from '../components/AppBar';
 
 const FormContainer = styled.div`
     display: flex;
@@ -71,7 +72,7 @@ function FormUser() {
 
     return (
         <FormContainer>
-            <StyledTitle>Datos personales:</StyledTitle>
+            <AppBar/>
             <StyledForm onSubmit={formik.handleSubmit}>
                 <StyledLabel htmlFor="firstName">Nombre:</StyledLabel>
                 <StyledInput

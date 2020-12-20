@@ -141,11 +141,12 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
 
     useEffect(() => {
         function handleClickOut(event) {
-            if(
-                event.clientY > appBarRef.current.getBoundingClientRect().bottom || 
-                event.clientX > refs[items.length -1].current.getBoundingClientRect().right
-            ) setDropdownVisible(-1)
-            
+            if(appBarRef.current) {
+                if(
+                    event.clientY > appBarRef.current.getBoundingClientRect().bottom || 
+                    event.clientX > refs[items.length -1].current.getBoundingClientRect().right
+                ) setDropdownVisible(-1)
+            }            
         }
         window.addEventListener('click', handleClickOut);
         return () => window.removeEventListener('click', handleClickOut);        
@@ -181,7 +182,7 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
                 )}
             </AppBarLeft>
             <AppBarRight>
-                <AppBarItem>{right}</AppBarItem>
+                <AppBarItem visible>{right}</AppBarItem>
             </AppBarRight>
             {items.map((e, index) =>
                 <Dropdown
