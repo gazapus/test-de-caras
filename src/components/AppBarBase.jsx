@@ -76,7 +76,7 @@ const AppBarLogo = styled.li`
     }
 `
 const Dropdown = styled.ul`
-    background-color: #f6f8ff;
+    background-color: #2d4463;
     position: absolute;
     top: ${props => props.y}px;
     left: ${props => props.x + 2}px;
@@ -96,10 +96,14 @@ const DropdownItem = styled.li`
     align-items: center;
     height: 2em;
     width: 100%;
-    text-indent: 0.7em;
-    font-size: 0.9em;
+    text-indent: 1em;
+    font-size: 0.8em;
+    color: #f0f0f0;
+    font-family: Roboto;
+    box-sizing: border-box;
+    padding-right: 2em;
     &:hover {
-        background-color: #bebebe;
+        background-color: #3D5A80;
         cursor: pointer;
     }
     .text {
@@ -113,6 +117,7 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
     const refItem2 = useRef();
     const refItem3 = useRef();
     const refItem4 = useRef();
+    const appBarRef = useRef();
 
     const refs = [refItem1, refItem2, refItem3, refItem4];
 
@@ -134,6 +139,18 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
         setDropdownPosition(dropdownPositions);
     }, [items])
 
+    useEffect(() => {
+        function handleClickOut(event) {
+            if(
+                event.clientY > appBarRef.current.getBoundingClientRect().bottom || 
+                event.clientX > refs[items.length -1].current.getBoundingClientRect().right
+            ) setDropdownVisible(-1)
+            
+        }
+        window.addEventListener('click', handleClickOut);
+        return () => window.removeEventListener('click', handleClickOut);        
+    }, [])
+
     function handleClick(itemIndex) {
         if(items[itemIndex].subItems) {
             if(dropdownVisible !== itemIndex) {
@@ -148,7 +165,7 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
     }
 
     return (
-        <AppBarContainer>
+        <AppBarContainer ref={appBarRef}>
             <AppBarLeft>
                 <AppBarLogo>{logo}</AppBarLogo>
                 {items.map((e, index) =>
