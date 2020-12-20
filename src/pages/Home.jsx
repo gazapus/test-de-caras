@@ -19,7 +19,7 @@ function Home() {
     */
     return (
         <div>
-            <AppBar/>
+            <AppBar auth={true}/>
             <h1>Home</h1>
             <p>hola</p>
             <Link to={paths.test}>Test</Link>

@@ -31,7 +31,7 @@ const AppBarRight = styled.ul`
 `
 const AppBarItem = styled.li`
     list-style-type: none;
-    display: flex;
+    display: ${props => props.visible ? 'flex': 'none'};
     justify-content: center;
     align-items: center;
     color: white;
@@ -173,6 +173,7 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
                         ref={refs[index]}
                         onClick={() => handleClick(index)}
                         key={index}
+                        visible={e.visible}
                     >
                         <FontAwesomeIcon icon={e.icon} style={{ marginRight: '0.4em' }}/>
                         <span>{e.name}</span>
