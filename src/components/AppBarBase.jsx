@@ -137,6 +137,7 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
             })
         }
         setDropdownPosition(dropdownPositions);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [items])
 
     useEffect(() => {
@@ -149,7 +150,8 @@ function AppBar({ logo = <></>, items = [], right = <></> }) {
             }            
         }
         window.addEventListener('click', handleClickOut);
-        return () => window.removeEventListener('click', handleClickOut);        
+        return () => window.removeEventListener('click', handleClickOut);  
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function handleClick(itemIndex) {

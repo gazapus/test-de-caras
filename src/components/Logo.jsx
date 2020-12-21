@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import brakpoints from '../utils/breakpoins';
+import { Link } from 'react-router-dom';
+import pathnames from '../utils/paths';
 
 const StyledText = styled.h1`
     color: white;
@@ -9,8 +10,10 @@ const StyledText = styled.h1`
 `
 
 function Logo() {
-    return(
-        <StyledText onClick={() => console.log("hola")}>CARAS-R</StyledText>
+    return (
+        <Link style={{textDecoration: 'none'}} to={pathnames.home}>
+            <StyledText>CARAS-R</StyledText>
+        </Link>
     )
 }
 

@@ -22,12 +22,6 @@ const FormContainer = styled.div`
     align-items: center;
 `
 
-const StyledTitle = styled.h3`
-    font-size: 2em;
-    text-transform: uppercase;
-    font-family: 'Cuprum-Bold';
-`
-
 const StyledColumn = styled.div`
     display: flex;
     flex-direction: column;
