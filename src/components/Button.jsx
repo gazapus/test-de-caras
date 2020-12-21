@@ -46,11 +46,12 @@ const StyledButton = styled.button`
 
 `
 
-function Button({ handleClick, size = "medium", children }) {
+function Button({ handleClick, size = "medium", children, type="button" }) {
     return (
         <StyledButton
             onClick={handleClick}
             size={size}
+            type={type}
         >
             {children}
         </StyledButton>

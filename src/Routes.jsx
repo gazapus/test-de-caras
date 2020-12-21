@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Test from './pages/Test';
-import UserForm from './pages/FormUser';
+import UserForm from './pages/FormTest';
 import paths from './utils/paths'
 
 function Routes() {

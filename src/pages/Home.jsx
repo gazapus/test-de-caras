@@ -3,6 +3,7 @@
 import paths from '../utils/paths'
 import { Link } from 'react-router-dom';
 import AppBar from '../components/AppBar';
+import FooterBase from '../components/FooterBase';
 //const { ipcRenderer } = window;
 
 function Home() {
@@ -20,11 +21,14 @@ function Home() {
     return (
         <div>
             <AppBar auth={true}/>
-            <h1>Home</h1>
-            <p>hola</p>
-            <Link to={paths.test}>Test</Link>
+            <Link to={paths.test}>Test</Link><br/>
             <Link to={paths.userForm}>Form</Link>
-
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <FooterBase/> 
         </div>
     );
 }

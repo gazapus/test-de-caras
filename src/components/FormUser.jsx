@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { ThemeContext } from '../ContextGenerator';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
 import { 
@@ -11,8 +9,7 @@ import {
     StyledCheckboxContainer,
     StyledCheckboxesContainer
 } from '../styles/StyledForm';
-import Button from '../components/Button';
-import AppBar from '../components/AppBar';
+import Button from './Button';
 
 const FormContainer = styled.div`
     display: flex;
@@ -20,6 +17,7 @@ const FormContainer = styled.div`
     width: 100%;
     box-sizing: border-box;
     align-items: center;
+    margin-bottom: 2em;
 `
 
 const StyledColumn = styled.div`
@@ -35,8 +33,7 @@ const StyledCenter = styled.div`
     margin: 2em 0 1em 0;
 `
 
-function FormUser() {
-    const { setUserData } = useContext(ThemeContext);
+function FormUser({handleSubmit}) {
     const formik = useFormik({
         initialValues: {
             firstName: '',
@@ -45,12 +42,7 @@ function FormUser() {
             sex: ''
         },
         onSubmit: values => {
-            setUserData({
-                name: values.firstName,
-                lastname: values.lastName,
-                age: values.age,
-                sex: values.age
-            });
+            handleSubmit(values)
         },
         validate: values => {
             let errors = {};
@@ -66,7 +58,6 @@ function FormUser() {
 
     return (
         <FormContainer>
-            <AppBar/>
             <StyledForm onSubmit={formik.handleSubmit}>
                 <StyledLabel htmlFor="firstName">Nombre:</StyledLabel>
                 <StyledInput
