@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
-//import paths from '../utils/paths'
-//import { Link } from 'react-router-dom';
-import FaceGroup from '../components/FaceGroup';
+import FaceGroup from './FaceGroup';
 import faces from '../faces';
 import styled from 'styled-components';
 import brakpoints from '../utils/breakpoins';
 
 const StyledAllFacesContainer = styled.div`
     display: grid;
-    width: 98%;
+    width: 90%;
     grid-gap: 1em;
     margin: 1%;
     box-sizing: border-box;
@@ -28,17 +26,21 @@ const StyledAllFacesContainer = styled.div`
     @media ${brakpoints.desktop} { 
         grid-template-columns: repeat(4, 1fr); ;
         margin: 0 5% 0 5%;
-        width: 90%;
+        width: 80%;
     }
 `
 
-const Test = () => {
+const Test = ({viewMode = false, previusSelectedFaces = []}) => {
     const [selectedFaces, setSelectedFaces] = useState([]);
 
     useEffect(() => {
-        let selectedFaces = Array(60);
-        selectedFaces.fill(-1);
-        setSelectedFaces(selectedFaces);
+        if(previusSelectedFaces.length) {
+            setSelectedFaces(previusSelectedFaces);
+        } else {
+            let selectedFaces = Array(60).fill(-1);
+            setSelectedFaces(selectedFaces);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function onSelectFace(indexFace, indexGroup) {
@@ -57,7 +59,7 @@ const Test = () => {
                     indexGroup={index}
                     selectedFace={selectedFaces[index]}
                     onSelectFace={onSelectFace}
-                    // rightFace={group.different}
+                    rightFace={viewMode ? group.different : -1}
                     key={index}
                 />
             )}

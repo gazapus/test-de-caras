@@ -5,6 +5,7 @@ function useWindowHeight() {
 
     useEffect(() => {
         function handleResize() {
+            console.log("change size" + window.innerHeight)
             setHeight(window.innerHeight);
         }
         setHeight(window.innerHeight);

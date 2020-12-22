@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
 import Home from './pages/Home';
-import Test from './pages/Test';
+import Test from './pages/TestPage';
 import UserForm from './pages/FormTest';
 import paths from './utils/paths'
 

@@ -2,17 +2,9 @@ import styled from 'styled-components';
 import FormUser from '../components/FormUser';
 import { useContext } from 'react';
 import { ThemeContext } from '../ContextGenerator';
-import AppBar from '../components/AppBar';
 import { useHistory } from 'react-router-dom';
 import pathnames from '../utils/paths';
-import FooterBase from '../components/FooterBase';
-
-const StyledContainerForm = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-`
+import PageContainer from '../components/PageContainer';
 
 const StyledTitle = styled.h3`
     font-family: RobotoBold;
@@ -36,12 +28,10 @@ function FormPage() {
     }
 
     return(
-        <StyledContainerForm>
-            <AppBar/>
+        <PageContainer>
             <StyledTitle>Datos Personales</StyledTitle>
             <FormUser handleSubmit={handleSubmit}/>
-            <FooterBase/>
-        </StyledContainerForm>
+        </PageContainer>
     )
 }
 
