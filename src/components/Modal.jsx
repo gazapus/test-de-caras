@@ -50,6 +50,8 @@ function Modal({ open, handleClose, autoClose = true, buttonClose = true, childr
             setTimeout(() => {
                 setScrollPosition(document.documentElement.scrollTop);
             }, 150)
+        } else {
+            onClose();
         }
     }, [open])
 

@@ -29,8 +29,11 @@ function TestPage() {
                 <StyledH3>TEST</StyledH3>
                 <Test/>
             </StyledContainer>
-            <Modal open={testFinished} handleClose={() => setTestFinished(false)} buttonClose={false}>
-                <ModalContent/>
+            <Modal 
+                open={testFinished} 
+                handleClose={() => setTestFinished(false)} 
+            >
+                <ModalContent handleClick={() => setTestFinished(false)}/>
             </Modal>
         </PageContainer>
     )
@@ -60,12 +63,12 @@ const StyledModalContainer = styled.div`
     }
 `
 
-function ModalContent() {
+function ModalContent({handleClick}) {
     return(
         <StyledModalContainer>
             <StyledH3 color='#6b0000'>Test Finalizado</StyledH3>
             <StyledP style={{marginBottom: '2em'}}>Gracias por participar</StyledP>
-            <Button size="small">ACEPTAR</Button>
+            <Button size="small" handleClick={handleClick}>ACEPTAR</Button>
         </StyledModalContainer>
     )
 }
