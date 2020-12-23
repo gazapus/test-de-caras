@@ -43,17 +43,15 @@ const idContainer = "modalContainer";
 
 function Modal({ open, handleClose, autoClose = true, children }) {
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [contentLoaded, setContentLoaded] = useState(false);
 
     useEffect(() => {
-        if(open && contentLoaded) {
+        if(open) {
             document.body.style.overflow = "hidden";
             setTimeout(() => {
                 setScrollPosition(document.documentElement.scrollTop);
             }, 150)
         }
-        window.addEventListener('load', () => setContentLoaded(true));
-    }, [open, contentLoaded])
+    }, [open])
 
     function handleClickOut(e) {
         if (e.target.id === idContainer && autoClose) onClose();
