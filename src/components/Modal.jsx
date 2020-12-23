@@ -41,11 +41,11 @@ const StyledCloseButtonContainer = styled.div`
 
 const idContainer = "modalContainer";
 
-function Modal({ open, handleClose, autoClose = true, children }) {
+function Modal({ open, handleClose, autoClose = true, buttonClose = true, children }) {
     const [scrollPosition, setScrollPosition] = useState(0);
 
     useEffect(() => {
-        if(open) {
+        if (open) {
             document.body.style.overflow = "hidden";
             setTimeout(() => {
                 setScrollPosition(document.documentElement.scrollTop);
@@ -70,15 +70,18 @@ function Modal({ open, handleClose, autoClose = true, children }) {
             top={scrollPosition}
         >
             <StyledModalContent>
-                <StyledCloseButtonContainer>
-                    <FontAwesomeIcon
-                        icon={'window-close'}
-                        color={'red'}
-                        size="lg"
-                        onClick={onClose}
-                        style={{ cursor: 'pointer' }}
-                    />
-                </StyledCloseButtonContainer>
+                {buttonClose ?
+                    <StyledCloseButtonContainer>
+                        <FontAwesomeIcon
+                            icon={'window-close'}
+                            color={'red'}
+                            size="lg"
+                            onClick={onClose}
+                            style={{ cursor: 'pointer' }}
+                        />
+                    </StyledCloseButtonContainer>
+                    : ''
+                }
                 {children}
             </StyledModalContent>
         </StyledModalContainer>
