@@ -41,21 +41,23 @@ const StyledCloseButtonContainer = styled.div`
 
 const idContainer = "modalContainer";
 
-function Modal({ open, handleClose, children }) {
+function Modal({ open, handleClose, autoClose = true, children }) {
     const [scrollPosition, setScrollPosition] = useState(0);
-
-    function handleClickOut(e) {
-        if (e.target.id === idContainer) onClose();
-    }
+    const [contentLoaded, setContentLoaded] = useState(false);
 
     useEffect(() => {
-        function calculatePosition() {
-            setScrollPosition(document.documentElement.scrollTop);
+        if(open && contentLoaded) {
+            document.body.style.overflow = "hidden";
+            setTimeout(() => {
+                setScrollPosition(document.documentElement.scrollTop);
+            }, 150)
         }
-        document.body.style.overflow = "hidden";
-        window.addEventListener('load', calculatePosition);
-        return () => window.removeEventListener('load', calculatePosition);
-    }, [])
+        window.addEventListener('load', () => setContentLoaded(true));
+    }, [open, contentLoaded])
+
+    function handleClickOut(e) {
+        if (e.target.id === idContainer && autoClose) onClose();
+    }
 
     function onClose() {
         document.body.style.overflow = "auto";

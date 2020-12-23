@@ -14,12 +14,12 @@ const StyledContainer = styled.div`
 `
 
 function TestPage() {
-    const [testFinished, setTestFinished] = useState(true);
+    const [testFinished, setTestFinished] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
             setTestFinished(true);
-        }, 180000)
+        }, 3000)
     }, [])
 
     return(
