@@ -6,27 +6,23 @@ import brakpoints from '../utils/breakpoins';
 
 const StyledAllFacesContainer = styled.div`
     display: grid;
-    width: 90%;
     grid-gap: 1em;
     margin: 1%;
     box-sizing: border-box;
-
     @media ${brakpoints.mobile} { 
         grid-template-columns: repeat(2, 1fr); 
         margin: 1% 2% 0 2%;
         width: 96%;
     }
-
     @media ${brakpoints.tablet} { 
         grid-template-columns: repeat(3, 1fr); 
         margin: 0 3% 0 3%;
-        width: 94%;
+        width: 80%;
     }
-
     @media ${brakpoints.desktop} { 
         grid-template-columns: repeat(4, 1fr); ;
         margin: 0 5% 0 5%;
-        width: 80%;
+        width: 70%;
     }
 `
 
