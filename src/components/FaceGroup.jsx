@@ -41,7 +41,7 @@ const StyledFacesContainer = styled.div`
  * @param {int} selectedFace chosen face index [optional]
  * @param {int} rightFace chosen face index [optional]
  */
-function FaceGroup({ face0, face1, face2, indexGroup, onSelectFace, selectedFace = -1, rightFace = -1 }) {
+function FaceGroup({ face0, face1, face2, indexGroup, onSelectFace = (x,a) => {}, selectedFace = -1, rightFace = -1 }) {
     return (
         <StyledFacesContainer>
             <StyledFaceImage

@@ -53,6 +53,7 @@ function Modal({ open, handleClose, autoClose = true, buttonClose = true, childr
         } else {
             onClose();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open])
 
     function handleClickOut(e) {

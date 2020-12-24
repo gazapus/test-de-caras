@@ -22,11 +22,8 @@ function Home() {
         <PageContainer>
             <Link to={paths.test}>Test</Link><br/>
             <Link to={paths.userForm}>Form</Link>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
-            <h1>Home</h1>
+            <Link to={paths.instrucctions}>Instrucciones</Link>
+
         </PageContainer>
     );
 }

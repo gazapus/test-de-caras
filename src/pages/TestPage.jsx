@@ -1,7 +1,7 @@
 import Test from '../components/Test';
 import styled from "styled-components";
 import PageContainer from '../components/PageContainer';
-import { StyledH3, StyledP } from '../styles/StyledTitles';
+import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
 import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
@@ -27,6 +27,12 @@ function TestPage() {
         <PageContainer showAppBar={false}>
             <StyledContainer>
                 <StyledH3>TEST</StyledH3>
+                <StyledH4 
+                    fontFamily="ComicBook"
+                    color="#eb5732"
+                >
+                    Recuerde que debe hacer click sobre la cara que es diferente a las otras dos
+                </StyledH4>
                 <Test/>
             </StyledContainer>
             <Modal 
