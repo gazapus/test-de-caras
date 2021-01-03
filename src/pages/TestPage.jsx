@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
 import brakpoints from '../utils/breakpoins';
+import useRegisteredUser from '../hooks/useRegisteredUser';
+import { Redirect } from 'react-router-dom';
+import pathnames from '../utils/paths';
 
 const StyledContainer = styled.div`
     display: flex;
@@ -16,12 +19,15 @@ const StyledContainer = styled.div`
 
 function TestPage() {
     const [testFinished, setTestFinished] = useState(false);
+    const userRegistered = useRegisteredUser();
 
     useEffect(() => {
         setTimeout(() => {
             setTestFinished(true);
         }, 3000)
     }, [])
+
+    if(!userRegistered) return <Redirect to={pathnames.home}/>
 
     return(
         <PageContainer showAppBar={false}>

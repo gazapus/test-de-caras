@@ -22,9 +22,9 @@ function FormPage() {
             name: values.firstName,
             lastname: values.lastName,
             age: values.age,
-            sex: values.age
+            sex: values.sex
         });
-        history.push(pathnames.test);
+        history.push(pathnames.instrucctions);
     }
 
     return(

@@ -4,6 +4,9 @@ import paths from '../utils/paths'
 import { Link } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 
+import { ThemeContext } from '../ContextGenerator';
+import { useContext } from 'react';
+
 //const { ipcRenderer } = window;
 
 function Home() {
@@ -18,6 +21,10 @@ function Home() {
         }
     }, []);
     */
+    // ***********************************
+    const { setUserData } = useContext(ThemeContext);
+    setUserData(null)
+    // **********************************
     return (
         <PageContainer>
             <Link to={paths.test}>Test</Link><br/>
