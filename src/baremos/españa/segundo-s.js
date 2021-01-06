@@ -1,7 +1,7 @@
 //Spanish sample scale 1° Secundary Education, 12-13 years old
 
 let baremo = {
-     ageRange: '13-14',
+     age: 13,
      media: {
           successes: 40.68,
           errors: 1.31,

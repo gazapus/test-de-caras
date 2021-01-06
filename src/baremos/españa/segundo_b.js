@@ -1,7 +1,7 @@
 //Spanish sample scale 1° and 2° Baccalaureate Education, 16-18 years old
 
 let baremo = {
-     ageRange: '17-18',
+     age: 17,
      media: {
           successes: 48.83,
           errors: 1.04,

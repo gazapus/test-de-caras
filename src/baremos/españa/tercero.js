@@ -1,7 +1,7 @@
 //Spanish sample scale 3° Basic Education, 8-9 years old
 
 let baremo = {
-     ageRange: '8-9',
+     age: 8,
      media: {
           successes: 28.97,
           errors: 1.33,

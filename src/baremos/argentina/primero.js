@@ -1,7 +1,7 @@
 //Argentinian sample scale 1° Basic Education, 6-7 years old
 
 let baremo = {
-     ageRange: '6-7',
+     age: 6,
      media: {
           successes: 14.01,
           errors: 1.38,
