@@ -17,7 +17,6 @@ function FormPage() {
     const history = useHistory();
 
     function handleSubmit(values) {
-        console.log(values)
         setUserData({
             name: values.firstName,
             lastname: values.lastName,

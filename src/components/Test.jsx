@@ -26,7 +26,7 @@ const StyledAllFacesContainer = styled.div`
     }
 `
 
-const Test = ({viewMode = false, previusSelectedFaces = []}) => {
+const Test = ({viewMode = false, previusSelectedFaces = [], handleSelect = () => {}}) => {
     const [selectedFaces, setSelectedFaces] = useState([]);
 
     useEffect(() => {
@@ -43,6 +43,7 @@ const Test = ({viewMode = false, previusSelectedFaces = []}) => {
         let newSelectedFaces = [...selectedFaces];
         newSelectedFaces[indexGroup] = indexFace;
         setSelectedFaces(newSelectedFaces);
+        handleSelect(newSelectedFaces);
     }
 
     return (

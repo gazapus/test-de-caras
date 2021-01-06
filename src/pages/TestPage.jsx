@@ -9,6 +9,7 @@ import brakpoints from '../utils/breakpoins';
 import useRegisteredUser from '../hooks/useRegisteredUser';
 import { Redirect } from 'react-router-dom';
 import pathnames from '../utils/paths';
+import { calculateSuccesses, calculateErrors, calculateICI, calculateNetSuccesses } from '../utils/calculate';
 
 const StyledContainer = styled.div`
     display: flex;
@@ -19,33 +20,47 @@ const StyledContainer = styled.div`
 
 function TestPage() {
     const [testFinished, setTestFinished] = useState(false);
-    const userRegistered = useRegisteredUser();
+    //const userRegistered = useRegisteredUser();
+    const [selectedFaces, setSelectedFaces] = useState(Array(60).fill(-1));
 
     useEffect(() => {
-        setTimeout(() => {
-            setTestFinished(true);
-        }, 3000)
+        setTimeout(() => setTestFinished(true), 10000);
     }, [])
 
-    if(!userRegistered) return <Redirect to={pathnames.home}/>
+    useEffect(() => {
+        if (testFinished) calculate();
+    }, [selectedFaces, testFinished])
 
-    return(
+    function calculate() {
+        const success = calculateSuccesses(selectedFaces);
+        const errors = calculateErrors(selectedFaces);
+        const ici = calculateICI(success, errors);
+        let netSuccesses = calculateNetSuccesses(success, errors);
+        console.log(success);
+        console.log(errors);
+        console.log(ici);
+        console.log(netSuccesses);
+    }
+
+    //if(!userRegistered) return <Redirect to={pathnames.home}/>
+
+    return (
         <PageContainer showAppBar={false}>
             <StyledContainer>
                 <StyledH3>TEST</StyledH3>
-                <StyledH4 
+                <StyledH4
                     fontFamily="ComicBook"
                     color="#eb5732"
                 >
                     Recuerde que debe hacer click sobre la cara que es diferente a las otras dos
                 </StyledH4>
-                <Test/>
+                <Test handleSelect={setSelectedFaces} />
             </StyledContainer>
-            <Modal 
-                open={testFinished} 
-                handleClose={() => setTestFinished(false)} 
+            <Modal
+                open={testFinished}
+                handleClose={() => setTestFinished(false)}
             >
-                <ModalContent handleClick={() => setTestFinished(false)}/>
+                <ModalContent handleClick={() => setTestFinished(false)} />
             </Modal>
         </PageContainer>
     )
@@ -75,11 +90,11 @@ const StyledModalContainer = styled.div`
     }
 `
 
-function ModalContent({handleClick}) {
-    return(
+function ModalContent({ handleClick }) {
+    return (
         <StyledModalContainer>
             <StyledH3 color='#6b0000'>Test Finalizado</StyledH3>
-            <StyledP style={{marginBottom: '2em'}}>Gracias por participar</StyledP>
+            <StyledP style={{ marginBottom: '2em' }}>Gracias por participar</StyledP>
             <Button size="small" handleClick={handleClick}>ACEPTAR</Button>
         </StyledModalContainer>
     )
