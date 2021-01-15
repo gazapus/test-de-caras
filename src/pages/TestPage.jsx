@@ -9,7 +9,8 @@ import brakpoints from '../utils/breakpoins';
 import useRegisteredUser from '../hooks/useRegisteredUser';
 import { Redirect } from 'react-router-dom';
 import pathnames from '../utils/paths';
-import { calculateSuccesses, calculateErrors, calculateICI, calculateNetSuccesses } from '../utils/calculate';
+import { calculateSuccesses, calculateErrors, calculateICI, calculateNetSuccesses, calculateEnneatypesAndPercentiles } from '../utils/calculate';
+import BaremosArg from '../baremos/baremos_arg.js';
 
 const StyledContainer = styled.div`
     display: flex;
@@ -32,14 +33,17 @@ function TestPage() {
     }, [selectedFaces, testFinished])
 
     function calculate() {
-        const success = calculateSuccesses(selectedFaces);
+        const successes = calculateSuccesses(selectedFaces);
         const errors = calculateErrors(selectedFaces);
-        const ici = calculateICI(success, errors);
-        let netSuccesses = calculateNetSuccesses(success, errors);
-        console.log(success);
+        const ici = calculateICI(successes, errors);
+        let netSuccesses = calculateNetSuccesses(successes, errors);
+        console.log(successes);
         console.log(errors);
         console.log(ici);
         console.log(netSuccesses);
+        let results = { successes, errors, netSuccesses, ici}
+        let res = calculateEnneatypesAndPercentiles(BaremosArg[0], results);
+        console.log(res)
     }
 
     //if(!userRegistered) return <Redirect to={pathnames.home}/>

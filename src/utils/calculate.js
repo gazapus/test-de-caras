@@ -80,3 +80,105 @@ export function calculateEnneatypesAndPercentiles(baremo, results) {
         iciPercentile,
     }
 }
+
+function defineEnneatypeScale(enneatype) {
+    let scale = '';
+    switch (enneatype) {
+        case 1: scale = 'muy bajo'; break;
+        case 2: scale = 'bajo'; break;
+        case 3: scale = 'medio bajo'; break;
+        case 4: case 5: case 6: scale = 'medio'; break;
+        case 7: scale = 'medio alto'; break;
+        case 8: scale = 'alto'; break;
+        case 9: scale = 'muy alto'; break;
+        default: scale = 'no definido'; break;
+    }
+    return scale;
+}
+
+function defineIciScale(iciEnneatype) {
+    let scale;
+    switch (iciEnneatype) {
+        case 1: scale = 'muy bajo'; break;
+        case 2: scale = 'debajo de la media'; break;
+        case 3: case 4: case 5: scale = 'adecuado'; break;
+        default: scale = 'no definido'; break;
+    }
+    return scale;
+}
+
+function defineNetSucessessDiagnosis(netSuccessesEnneatype) {
+    let diagnosis;
+    switch (netSuccessesEnneatype) {
+        case 1: case 2: case 3:
+            diagnosis = 'Tiene baja atención visoperceptiva y atencional. ' +
+                'No realiza juicios de semejanza/diferencia adecuados y no presta la suficiente atención a los detalles.';
+            break;
+        case 4: case 5: case 6:
+            diagnosis = 'Tiene una adecuada atención visperceptiva y atencional. ' +
+                'Es capaz de atender a los detalles y de realizar un numero adecuado de juicios correctos, sin comenter muchos errores. ';
+            break;
+        case 7: case 8: case 9:
+            diagnosis = 'Procesa de forma rápida los detalles de los estímulos visuales y es preciso en los juicios que realiza. ' +
+                'Comete pocos errores y responde correctamente a un alto número de items.';
+            break;
+        default:
+            diagnosis = 'No definido.';
+            break;
+    }
+    return diagnosis;
+}
+
+function defineIciDiagnosis(netSuccessesEnneatype) {
+    let diagnosis;
+    switch (netSuccessesEnneatype) {
+        case 1: case 2:
+            diagnosis = 'Es impulsivo en la ejecución de la tarea, no es reflexivo a la hora de realizar los juicios de semenanza/diferencia. ' +
+                'Comete un considerable numero de errores y posibles aciertos por azar.';
+            break;
+        case 3: case 4: case 5:
+            diagnosis = 'Tiene un adecuado control de impusividad, similar a la media, ejecutando de forma reflexiva la tarea' +
+                ' y por ende cometiendo pocos errores.';
+            break;
+        default:
+            diagnosis = 'No definido.';
+            break;
+    }
+    return diagnosis;
+}
+
+function defineAnswerType(iciEnneatype, netSuccessesEnneatype) {
+    let answerType = '';
+    if(iciEnneatype > 2) {
+        if(netSuccessesEnneatype >= 5) {
+            answerType = 'Eficaz y no impulsivo';
+        } else {
+            answerType = 'Ineficaz y no impulsivo';
+        }
+    } else {
+        if(netSuccessesEnneatype >= 5) {
+            answerType = 'Eficaz e impulsivo';
+        } else {
+            answerType = 'Ineficaz e impulsivo';
+        }
+    }
+    return answerType;
+}
+
+function defineSubtype(iciEnneatype, successesEnneatype) {
+    let subtype = '';
+    if(iciEnneatype > 2) {
+        if(successesEnneatype > 2) {
+            subtype = 'rendimiento normal';
+        } else {
+            subtype = 'inatento';
+        }
+    } else {
+        if(successesEnneatype > 2) {
+            subtype = 'impulsivo';
+        } else {
+            subtype = 'combinado';
+        }
+    }
+    return subtype;
+}
