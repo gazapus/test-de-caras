@@ -81,7 +81,7 @@ export function calculateEnneatypesAndPercentiles(baremo, results) {
     }
 }
 
-function defineEnneatypeScale(enneatype) {
+export function defineEnneatypeScale(enneatype) {
     let scale = '';
     switch (enneatype) {
         case 1: scale = 'muy bajo'; break;
@@ -96,7 +96,7 @@ function defineEnneatypeScale(enneatype) {
     return scale;
 }
 
-function defineIciScale(iciEnneatype) {
+export function defineIciScale(iciEnneatype) {
     let scale;
     switch (iciEnneatype) {
         case 1: scale = 'muy bajo'; break;
@@ -107,7 +107,7 @@ function defineIciScale(iciEnneatype) {
     return scale;
 }
 
-function defineNetSucessessDiagnosis(netSuccessesEnneatype) {
+export function defineNetSucessessDiagnosis(netSuccessesEnneatype) {
     let diagnosis;
     switch (netSuccessesEnneatype) {
         case 1: case 2: case 3:
@@ -129,7 +129,7 @@ function defineNetSucessessDiagnosis(netSuccessesEnneatype) {
     return diagnosis;
 }
 
-function defineIciDiagnosis(netSuccessesEnneatype) {
+export function defineIciDiagnosis(netSuccessesEnneatype) {
     let diagnosis;
     switch (netSuccessesEnneatype) {
         case 1: case 2:
@@ -147,7 +147,7 @@ function defineIciDiagnosis(netSuccessesEnneatype) {
     return diagnosis;
 }
 
-function defineAnswerType(iciEnneatype, netSuccessesEnneatype) {
+export function defineAnswerType(iciEnneatype, netSuccessesEnneatype) {
     let answerType = '';
     if(iciEnneatype > 2) {
         if(netSuccessesEnneatype >= 5) {
@@ -165,7 +165,7 @@ function defineAnswerType(iciEnneatype, netSuccessesEnneatype) {
     return answerType;
 }
 
-function defineSubtype(iciEnneatype, successesEnneatype) {
+export function defineSubtype(iciEnneatype, successesEnneatype) {
     let subtype = '';
     if(iciEnneatype > 2) {
         if(successesEnneatype > 2) {

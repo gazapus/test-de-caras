@@ -9,8 +9,20 @@ import brakpoints from '../utils/breakpoins';
 import useRegisteredUser from '../hooks/useRegisteredUser';
 import { Redirect } from 'react-router-dom';
 import pathnames from '../utils/paths';
-import { calculateSuccesses, calculateErrors, calculateICI, calculateNetSuccesses, calculateEnneatypesAndPercentiles } from '../utils/calculate';
-import BaremosArg from '../baremos/baremos_arg.js';
+import { 
+    calculateSuccesses, 
+    calculateErrors, 
+    calculateICI, 
+    calculateNetSuccesses, 
+    calculateEnneatypesAndPercentiles,
+    defineEnneatypeScale,
+    defineIciScale,
+    defineNetSucessessDiagnosis,
+    defineIciDiagnosis,
+    defineAnswerType,
+    defineSubtype,
+    defineBaremoToUse
+} from '../utils/calculate';
 
 const StyledContainer = styled.div`
     display: flex;
@@ -41,9 +53,18 @@ function TestPage() {
         console.log(errors);
         console.log(ici);
         console.log(netSuccesses);
+        let baremo = defineBaremoToUse(10, "Argentina");
+        console.log(baremo)
         let results = { successes, errors, netSuccesses, ici}
-        let res = calculateEnneatypesAndPercentiles(BaremosArg[0], results);
+        let res = calculateEnneatypesAndPercentiles(baremo, results);
         console.log(res)
+        console.log('\nRendimiento: ' + defineEnneatypeScale(res.netSuccessesEnneatype));
+        console.log('\nImpulsividad: ' + defineIciScale(res.iciEnneatype));
+        console.log(defineNetSucessessDiagnosis(res.netSuccessesEnneatype));
+        console.log(defineIciDiagnosis(res.iciEnneatype));
+        console.log('\nTipo de respuesta: ' + defineAnswerType(res.iciEnneatype, res.netSuccessesEnneatype));
+        console.log('\nSubtipo: ' + defineSubtype(res.iciEnneatype, res.successesEnneatype));
+
     }
 
     //if(!userRegistered) return <Redirect to={pathnames.home}/>
