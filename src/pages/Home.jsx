@@ -30,6 +30,8 @@ function Home() {
             <Link to={paths.test}>Test</Link><br/>
             <Link to={paths.userForm}>Form</Link>
             <Link to={paths.instrucctions}>Instrucciones</Link>
+            <Link to={paths.signup}>Registrarse</Link>
+            <Link to={paths.login}>Iniciar sesión</Link>
 
         </PageContainer>
     );

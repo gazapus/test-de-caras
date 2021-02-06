@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Test from './pages/TestPage';
 import UserForm from './pages/FormTest';
 import Instrucctions from './pages/Instrucctions';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 import paths from './utils/paths'
 
 function Routes() {
@@ -14,6 +16,9 @@ function Routes() {
             <Route exact path={paths.test_user} component={UserForm} />
             <Route exact path={paths.userForm} component={UserForm} />
             <Route exact path={paths.instrucctions} component={Instrucctions} />
+            <Route exact path={paths.signup} component={Signup} />
+            <Route exact path={paths.login} component={Login} />
+
         </Switch>
     );
 }

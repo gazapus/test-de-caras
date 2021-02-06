@@ -41,7 +41,7 @@ const StyledCloseButtonContainer = styled.div`
 
 const idContainer = "modalContainer";
 
-function Modal({ open, handleClose, autoClose = true, buttonClose = true, children }) {
+function Modal({ open, handleClose = () => {}, autoClose = true, buttonClose = true, children }) {
     const [scrollPosition, setScrollPosition] = useState(0);
 
     useEffect(() => {
