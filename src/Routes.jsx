@@ -11,6 +11,7 @@ function Routes() {
         <Switch>
             <Route exact path={paths.home} component={Home} />
             <Route exact path={paths.test} component={Test} />
+            <Route exact path={paths.test_user} component={UserForm} />
             <Route exact path={paths.userForm} component={UserForm} />
             <Route exact path={paths.instrucctions} component={Instrucctions} />
         </Switch>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import FormUser from '../components/FormUser';
 import { useContext } from 'react';
 import { ThemeContext } from '../ContextGenerator';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import pathnames from '../utils/paths';
 import PageContainer from '../components/PageContainer';
 
@@ -13,16 +13,18 @@ const StyledTitle = styled.h3`
 `   
 
 function FormPage() {
-    const { setUserData } = useContext(ThemeContext);
+    const { setUserData, setOwner } = useContext(ThemeContext);
     const history = useHistory();
+    let { id } = useParams();
 
     function handleSubmit(values) {
         setUserData({
             name: values.firstName,
             lastname: values.lastName,
             age: values.age,
-            sex: values.sex
+            sex: values.sex,
         });
+        setOwner(id)
         history.push(pathnames.instrucctions);
     }
 

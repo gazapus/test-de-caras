@@ -2,18 +2,21 @@ import Test from '../components/Test';
 import styled from "styled-components";
 import PageContainer from '../components/PageContainer';
 import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
 import brakpoints from '../utils/breakpoins';
 import useRegisteredUser from '../hooks/useRegisteredUser';
 import { Redirect } from 'react-router-dom';
 import pathnames from '../utils/paths';
-import { 
-    calculateSuccesses, 
-    calculateErrors, 
-    calculateICI, 
-    calculateNetSuccesses, 
+import { ThemeContext } from '../ContextGenerator';
+import TestService from '../services/test.service';
+
+import {
+    calculateSuccesses,
+    calculateErrors,
+    calculateICI,
+    calculateNetSuccesses,
     calculateEnneatypesAndPercentiles,
     defineEnneatypeScale,
     defineIciScale,
@@ -35,36 +38,75 @@ function TestPage() {
     const [testFinished, setTestFinished] = useState(false);
     //const userRegistered = useRegisteredUser();
     const [selectedFaces, setSelectedFaces] = useState(Array(60).fill(-1));
+    const { userData, owner } = useContext(ThemeContext);
 
     useEffect(() => {
         setTimeout(() => setTestFinished(true), 10000);
     }, [])
 
     useEffect(() => {
-        if (testFinished) calculate();
+
+        function processResults() {
+            const calculatedResults = calculateResults();
+            const diagnoses = diagnoseResults(calculatedResults);
+            const result = {...calculatedResults, ...diagnoses};
+            const personalInformation = userData;
+            const institutionalInformation = {
+                institution:  "esc",
+                grade: "6",
+                country: "España",
+            };
+            return {
+                result, 
+                personalInformation, 
+                institutionalInformation,
+                owner: owner
+            }
+        }
+
+        if (testFinished) {
+            let data = processResults();
+            TestService.create(data)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+        };
     }, [selectedFaces, testFinished])
 
-    function calculate() {
+
+    function calculateResults(){
         const successes = calculateSuccesses(selectedFaces);
         const errors = calculateErrors(selectedFaces);
         const ici = calculateICI(successes, errors);
         let netSuccesses = calculateNetSuccesses(successes, errors);
-        console.log(successes);
-        console.log(errors);
-        console.log(ici);
-        console.log(netSuccesses);
         let baremo = defineBaremoToUse(10, "Argentina");
-        console.log(baremo)
-        let results = { successes, errors, netSuccesses, ici}
-        let res = calculateEnneatypesAndPercentiles(baremo, results);
-        console.log(res)
-        console.log('\nRendimiento: ' + defineEnneatypeScale(res.netSuccessesEnneatype));
-        console.log('\nImpulsividad: ' + defineIciScale(res.iciEnneatype));
-        console.log(defineNetSucessessDiagnosis(res.netSuccessesEnneatype));
-        console.log(defineIciDiagnosis(res.iciEnneatype));
-        console.log('\nTipo de respuesta: ' + defineAnswerType(res.iciEnneatype, res.netSuccessesEnneatype));
-        console.log('\nSubtipo: ' + defineSubtype(res.iciEnneatype, res.successesEnneatype));
+        let {
+            successesEnneatype, errorsEnneatype, netSuccessesEnneatype,
+            iciEnneatype, successesPercentile, errorsPercentile,
+            netSuccessesPercentile, iciPercentile,
+        } = calculateEnneatypesAndPercentiles(baremo, { successes, errors, netSuccesses, ici });
+        let results = {
+            successes, errors, ici, netSuccesses, successesEnneatype, 
+            errorsEnneatype, netSuccessesEnneatype, iciEnneatype, successesPercentile,
+            errorsPercentile, netSuccessesPercentile, iciPercentile
+        }
+        return results;
+    }
 
+    function diagnoseResults(results) {
+        let perfomance = defineEnneatypeScale(results.netSuccessesEnneatype);
+        let impulsivityControl = defineIciScale(results.iciEnneatype);
+        let diagnosisNet = defineNetSucessessDiagnosis(results.netSuccessesEnneatype);
+        let diagnosisICI = defineIciDiagnosis(results.iciEnneatype);
+        let answerType = defineAnswerType(results.iciEnneatype, results.netSuccessesEnneatype);
+        let subtype = defineSubtype(results.iciEnneatype, results.successesEnneatype);
+        const diagnoses = {
+            subtype,
+            answerType,
+            perfomance,
+            impulsivityControl,
+            diagnosis: diagnosisNet + ' ' + diagnosisICI 
+        }
+        return diagnoses;
     }
 
     //if(!userRegistered) return <Redirect to={pathnames.home}/>
