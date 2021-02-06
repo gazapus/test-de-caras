@@ -5,18 +5,33 @@ import FormLogin from '../components/FormLogin';
 import Modal from '../components/Modal';
 import brakpoints from '../utils/breakpoins';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { StyledH3, StyledP } from '../styles/StyledTitles';
+import { useHistory, Link } from 'react-router-dom';
+import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
 import Button from '../components/Button';
 
 const StyledTitle = styled.h3`
     font-family: RobotoBold;
     font-size: 1.7em;
     text-align: center;
-`   
+`
+
+const StyledPseudoAnchor = styled.span`
+    font-size: 1em;
+    color: #3D5A80 ;
+    text-decoration-color: #3D5A80;
+    &:visited {
+        color: #3D5A80 ;
+        text-decoration-color: #3D5A80;
+        font-size: 2em;
+    }
+    &:active {
+        color: #293241 ;
+        text-decoration-color: #293241;
+    }
+`
 
 function LoginPage() {
-    const [ modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
     const history = useHistory();
 
     function handleSubmit(values) {
@@ -24,10 +39,10 @@ function LoginPage() {
         history.push(pathnames.home)
     }
 
-    return(
+    return (
         <PageContainer>
             <StyledTitle>Iniciar Sesión</StyledTitle>
-            <FormLogin handleSubmit={handleSubmit}/>
+            <FormLogin handleSubmit={handleSubmit} />
             <Modal
                 open={modalOpen}
                 autoClose={false}
@@ -35,6 +50,14 @@ function LoginPage() {
             >
                 <ModalContent handleClick={() => setModalOpen(false)} />
             </Modal>
+            <StyledH4 textAlign="center" color="#3D5A80">
+                ¿No posee cuenta?  <span> </span>
+                <Link to={pathnames.signup}>
+                    <StyledPseudoAnchor>
+                        Registrese
+                    </StyledPseudoAnchor>
+                </Link>
+            </StyledH4>
         </PageContainer>
     )
 }
