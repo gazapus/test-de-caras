@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
 import Button from '../components/Button';
+import AuthService from '../services/auth.service';
 
 const StyledTitle = styled.h3`
     font-family: RobotoBold;
@@ -35,8 +36,9 @@ function LoginPage() {
     const history = useHistory();
 
     function handleSubmit(values) {
-        console.log(values);
-        history.push(pathnames.home)
+        AuthService.signin(values.email, values.password)
+            .then(res => history.push(pathnames.home))
+            .catch(err => alert(err.message))
     }
 
     return (

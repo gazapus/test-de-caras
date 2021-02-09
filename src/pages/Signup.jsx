@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { StyledH3, StyledP } from '../styles/StyledTitles';
 import Button from '../components/Button';
+import AuthService from '../services/auth.service';
 
 const StyledTitle = styled.h3`
     font-family: RobotoBold;
@@ -20,8 +21,16 @@ function SignUpPage() {
     const history = useHistory();
 
     function handleSubmit(values) {
-        console.log(values)
-        setRegisterFinished(true);
+        AuthService.signup(values)
+            .then(res => {
+                console.log(values)
+                console.log(res)
+                setRegisterFinished(true);
+            })
+            .catch(err => {
+                console.log(err)
+                alert(err.message)
+            })
     }
 
     return(

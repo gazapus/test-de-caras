@@ -29,8 +29,8 @@ const StyledCenter = styled.div`
 function FormUser({handleSubmit}) {
     const formik = useFormik({
         initialValues: {
-            firstName: '',
-            lastName: '',
+            name: '',
+            lastname: '',
             email: '',
             password: ''
         },
@@ -39,8 +39,8 @@ function FormUser({handleSubmit}) {
         },
         validate: values => {
             let errors = {};
-            if (values.firstName.length < 1) errors.firstName = "Nombre invalido";
-            if (values.lastName.length < 1) errors.lastName = "Apellido invalido";
+            if (values.name.length < 1) errors.name = "Nombre invalido";
+            if (values.lastname.length < 1) errors.lastname = "Apellido invalido";
             if (!Validators.validateEmail(values.email)) errors.email = "Dirección de email invalida";
             if (values.password.length < 4 || values.password.length > 20) errors.password = "Password inválido";
             return errors;
@@ -52,31 +52,31 @@ function FormUser({handleSubmit}) {
     return (
         <FormContainer>
             <StyledForm onSubmit={formik.handleSubmit}>
-                <StyledLabel htmlFor="firstName">Nombre:</StyledLabel>
+                <StyledLabel htmlFor="name">Nombre:</StyledLabel>
                 <StyledInput
-                    id="firstName"
-                    name="firstName"
+                    id="name"
+                    name="name"
                     type="text"
                     onChange={formik.handleChange}
-                    value={formik.values.firstName}
+                    value={formik.values.name}
                     maxLength={50}
                     minLength={1}
-                    error={formik.errors.firstName}
+                    error={formik.errors.name}
                 />
-                <StyledErrorMessage>{formik.errors.firstName}</StyledErrorMessage>
+                <StyledErrorMessage>{formik.errors.name}</StyledErrorMessage>
 
-                <StyledLabel htmlFor="lastName">Apellido:</StyledLabel>
+                <StyledLabel htmlFor="lastname">Apellido:</StyledLabel>
                 <StyledInput
-                    id="lastName"
-                    name="lastName"
+                    id="lastname"
+                    name="lastname"
                     type="text"
                     onChange={formik.handleChange}
-                    value={formik.values.lastName}
-                    error={formik.errors.lastName}
+                    value={formik.values.lastname}
+                    error={formik.errors.lastname}
                     maxLength={50}
                     minLength={1}
                 />
-                <StyledErrorMessage>{formik.errors.lastName}</StyledErrorMessage>
+                <StyledErrorMessage>{formik.errors.lastname}</StyledErrorMessage>
 
                 <StyledLabel htmlFor="email">Email:</StyledLabel>
                 <StyledInput
