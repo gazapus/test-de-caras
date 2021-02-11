@@ -2,12 +2,12 @@ import Test from '../components/Test';
 import styled from "styled-components";
 import PageContainer from '../components/PageContainer';
 import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext} from 'react';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
 import brakpoints from '../utils/breakpoins';
 import useRegisteredUser from '../hooks/useRegisteredUser';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import pathnames from '../utils/paths';
 import { ThemeContext } from '../ContextGenerator';
 import TestService from '../services/test.service';
@@ -40,6 +40,7 @@ function TestPage() {
     //const userRegistered = useRegisteredUser();
     const [selectedFaces, setSelectedFaces] = useState(Array(60).fill(-1));
     const { userData, owner, group } = useContext(ThemeContext);
+    const history = useHistory();
 
     useEffect(() => {
         setTimeout(() => setTestFinished(true), 10000);
@@ -72,10 +73,16 @@ function TestPage() {
                     if (group !== '0') {
                         GroupService.addTest(test_id, group)
                             .then(res => console.log(res))
-                            .catch(err => console.error(err))
+                            .catch(err => {
+                                console.error(err);
+                                alert("Error al guardar el test")
+                            })
                     }
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log(err)
+                    alert("Error al guardar el test")
+                })
         };
     }, [testFinished])
 
@@ -116,6 +123,8 @@ function TestPage() {
         return diagnoses;
     }
 
+    const finishTest = () => history.push(pathnames.home)
+
     //if(!userRegistered) return <Redirect to={pathnames.home}/>
 
     return (
@@ -132,9 +141,8 @@ function TestPage() {
             </StyledContainer>
             <Modal
                 open={testFinished}
-                handleClose={() => setTestFinished(false)}
             >
-                <ModalContent handleClick={() => setTestFinished(false)} />
+                <ModalContent handleClick={finishTest} />
             </Modal>
         </PageContainer>
     )
