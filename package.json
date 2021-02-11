@@ -5,8 +5,6 @@
     "node": "12.18.3"
   },
   "private": true,
-  "main": "public/electron/electron.js",
-  "homepage": "./",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
@@ -25,14 +23,10 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "react-start": "react-scripts start",
-    "react-build": "react-scripts build",
-    "react-test": "react-scripts test --env=jsdom",
-    "react-eject": "react-scripts eject",
-    "electron-build": "electron-builder",
-    "release": "yarn react-build && electron-builder --publish=always",
-    "build": "yarn react-build && yarn electron-build",
-    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electromon .\""
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -50,23 +44,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "build": {
-    "extraMetadata": {
-      "main": "build/electron/electron.js"
-    },
-    "appId": "xyz.testdecaras",
-    "win": {
-      "target": "nsis",
-      "icon": "build/electron/icon.ico"
-    },
-    "productName": "Test de Caras",
-    "buildVersion": "0.1.0",
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "copyright": "Copyright © 2020 Cristian Villafañe"
   },
   "devDependencies": {
     "electromon": "^1.0.10",
