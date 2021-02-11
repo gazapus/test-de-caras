@@ -3,11 +3,23 @@
 import paths from '../utils/paths'
 import { Link } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
-
 import { ThemeContext } from '../ContextGenerator';
 import { useContext } from 'react';
+import styled from 'styled-components';
 
 //const { ipcRenderer } = window;
+
+const StyledTitle = styled.h1`
+    font-family: TrulyMadly;
+    font-size: 3em;
+    text-align: center;
+`
+
+const StyledButton = styled.h2`
+    font-family: TrulyMadly;
+    font-size: 1.5em;
+    text-align: center;
+`
 
 function Home() {
     /*
@@ -27,12 +39,12 @@ function Home() {
     // **********************************
     return (
         <PageContainer>
-            <Link to={paths.test}>Test</Link><br/>
-            <Link to={paths.userForm}>Form</Link>
-            <Link to={paths.instrucctions}>Instrucciones</Link>
-            <Link to={paths.signup}>Registrarse</Link>
-            <Link to={paths.login}>Iniciar sesión</Link>
-            <Link to={'/test/user/6022d03d5ff9110f60263e68/0'}>get</Link>
+            <StyledTitle>Test de Caras</StyledTitle>
+            <Link to={'/test/user/6022d03d5ff9110f60263e68/0'}>
+                <StyledButton>
+                    EMPEZAR
+                </StyledButton>
+            </Link>
 
         </PageContainer>
     );
