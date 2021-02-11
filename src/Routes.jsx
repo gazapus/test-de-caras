@@ -13,8 +13,8 @@ function Routes() {
         <Switch>
             <Route exact path={paths.home} component={Home} />
             <Route exact path={paths.test} component={Test} />
-            <Route exact path={paths.test_user} component={UserForm} />
-            <Route exact path={paths.userForm} component={UserForm} />
+            <Route path={paths.test_user} component={UserForm}/>
+            <Route path={paths.userForm} component={UserForm}/>
             <Route exact path={paths.instrucctions} component={Instrucctions} />
             <Route exact path={paths.signup} component={Signup} />
             <Route exact path={paths.login} component={Login} />

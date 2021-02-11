@@ -32,6 +32,7 @@ function Home() {
             <Link to={paths.instrucctions}>Instrucciones</Link>
             <Link to={paths.signup}>Registrarse</Link>
             <Link to={paths.login}>Iniciar sesión</Link>
+            <Link to={'/test/user/6022d03d5ff9110f60263e68/0'}>get</Link>
 
         </PageContainer>
     );

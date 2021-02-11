@@ -61,20 +61,31 @@ const StyledErrorMessage = styled.small`
     text-align: right;
     height: 1.2em;
 `
-const StyledCheckboxesContainer = styled.div`
+const StyledRadioesContainer = styled.div`
     background-color: #e7e7e7;
     padding: 0em 0 1em 0;
 `
 
-const StyledCheckboxContainer = styled.div`
+const StyledRadioContainer = styled.div`
     margin: 1em 0 0 1em;
     padding-right: 1.5em;
 `
-const StyledCheckbox = styled.input`
+const StyledRadio = styled.input`
     margin-right: 1em;
     transform: scale(1.5);
     &:checked {
         color: red;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+`
+
+const StyledCheckbox = styled.input`
+    margin-right: 1em;
+    transform: scale(1.5);
+    &:checked {
+        color: blue;
     }
     &:hover {
         cursor: pointer;
@@ -86,7 +97,8 @@ export {
     StyledInput, 
     StyledLabel, 
     StyledErrorMessage,
-    StyledCheckboxesContainer,
-    StyledCheckboxContainer,
+    StyledRadioesContainer,
+    StyledRadioContainer,
+    StyledRadio,
     StyledCheckbox
 }

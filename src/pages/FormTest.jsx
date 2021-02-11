@@ -13,10 +13,10 @@ const StyledTitle = styled.h3`
 `   
 
 function FormPage() {
-    const { setUserData, setOwner } = useContext(ThemeContext);
+    const { setUserData, setOwner, setGroup } = useContext(ThemeContext);
     const history = useHistory();
-    let { id } = useParams();
-
+    let { user_id, group_id } = useParams();
+    
     function handleSubmit(values) {
         setUserData({
             name: values.firstName,
@@ -24,7 +24,8 @@ function FormPage() {
             age: values.age,
             sex: values.sex,
         });
-        setOwner(id)
+        setOwner(user_id);
+        setGroup(group_id);
         history.push(pathnames.instrucctions);
     }
 

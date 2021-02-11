@@ -11,6 +11,7 @@ import { Redirect } from 'react-router-dom';
 import pathnames from '../utils/paths';
 import { ThemeContext } from '../ContextGenerator';
 import TestService from '../services/test.service';
+import GroupService from '../services/group.service';
 
 import {
     calculateSuccesses,
@@ -38,42 +39,48 @@ function TestPage() {
     const [testFinished, setTestFinished] = useState(false);
     //const userRegistered = useRegisteredUser();
     const [selectedFaces, setSelectedFaces] = useState(Array(60).fill(-1));
-    const { userData, owner } = useContext(ThemeContext);
+    const { userData, owner, group } = useContext(ThemeContext);
 
     useEffect(() => {
         setTimeout(() => setTestFinished(true), 10000);
     }, [])
 
     useEffect(() => {
-
         function processResults() {
             const calculatedResults = calculateResults();
             const diagnoses = diagnoseResults(calculatedResults);
-            const result = {...calculatedResults, ...diagnoses};
+            const result = { ...calculatedResults, ...diagnoses };
             const personalInformation = userData;
             const institutionalInformation = {
-                institution:  "esc",
+                institution: "esc",
                 grade: "6",
                 country: "España",
             };
             return {
-                result, 
-                personalInformation, 
+                result,
+                personalInformation,
                 institutionalInformation,
-                owner: owner
+                owner: owner,
+                selectedFaces
             }
         }
-
         if (testFinished) {
             let data = processResults();
             TestService.create(data)
-                .then(res => console.log(res))
+                .then(res => {
+                    const test_id = res.data.id;
+                    if (group !== '0') {
+                        GroupService.addTest(test_id, group)
+                            .then(res => console.log(res))
+                            .catch(err => console.error(err))
+                    }
+                })
                 .catch(err => console.log(err))
         };
-    }, [selectedFaces, testFinished])
+    }, [testFinished])
 
 
-    function calculateResults(){
+    function calculateResults() {
         const successes = calculateSuccesses(selectedFaces);
         const errors = calculateErrors(selectedFaces);
         const ici = calculateICI(successes, errors);
@@ -85,7 +92,7 @@ function TestPage() {
             netSuccessesPercentile, iciPercentile,
         } = calculateEnneatypesAndPercentiles(baremo, { successes, errors, netSuccesses, ici });
         let results = {
-            successes, errors, ici, netSuccesses, successesEnneatype, 
+            successes, errors, ici, netSuccesses, successesEnneatype,
             errorsEnneatype, netSuccessesEnneatype, iciEnneatype, successesPercentile,
             errorsPercentile, netSuccessesPercentile, iciPercentile
         }
@@ -104,7 +111,7 @@ function TestPage() {
             answerType,
             perfomance,
             impulsivityControl,
-            diagnosis: diagnosisNet + ' ' + diagnosisICI 
+            diagnosis: diagnosisNet + ' ' + diagnosisICI
         }
         return diagnoses;
     }

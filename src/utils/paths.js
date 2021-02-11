@@ -3,8 +3,7 @@ const paths = {
     test: '/test',
     userForm: '/userform',
     instrucctions: '/instrucctions',
-    test_user: '/test/user/:id',
-    test_group: '/test/group/:id',
+    test_user: '/test/user/:user_id/:group_id',
     signup: '/register',
     login: '/login',
 }
