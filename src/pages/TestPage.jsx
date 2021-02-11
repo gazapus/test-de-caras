@@ -2,11 +2,11 @@ import Test from '../components/Test';
 import styled from "styled-components";
 import PageContainer from '../components/PageContainer';
 import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
-import { useEffect, useState, useContext} from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
 import brakpoints from '../utils/breakpoins';
-import useRegisteredUser from '../hooks/useRegisteredUser';
+//import useRegisteredUser from '../hooks/useRegisteredUser';
 import { useHistory } from 'react-router-dom';
 import pathnames from '../utils/paths';
 import { ThemeContext } from '../ContextGenerator';
@@ -37,13 +37,15 @@ const StyledContainer = styled.div`
 
 function TestPage() {
     const [testFinished, setTestFinished] = useState(false);
+    const [successfullySaved, setSuccefullySaved] = useState(false);
     //const userRegistered = useRegisteredUser();
     const [selectedFaces, setSelectedFaces] = useState(Array(60).fill(-1));
     const { userData, owner, group } = useContext(ThemeContext);
     const history = useHistory();
+    const THREE_MINUTES = 180000;
 
     useEffect(() => {
-        setTimeout(() => setTestFinished(true), 10000);
+        setTimeout(() => setTestFinished(true), THREE_MINUTES);
     }, [])
 
     useEffect(() => {
@@ -83,6 +85,7 @@ function TestPage() {
                     console.log(err)
                     alert("Error al guardar el test")
                 })
+                .finally(() => setSuccefullySaved(true))
         };
     }, [testFinished])
 
@@ -142,7 +145,7 @@ function TestPage() {
             <Modal
                 open={testFinished}
             >
-                <ModalContent handleClick={finishTest} />
+                <ModalContent handleClick={finishTest} closeEnabled={successfullySaved} />
             </Modal>
         </PageContainer>
     )
@@ -172,13 +175,19 @@ const StyledModalContainer = styled.div`
     }
 `
 
-function ModalContent({ handleClick }) {
+function ModalContent({ handleClick, closeEnabled }) {
     return (
         <StyledModalContainer>
             <StyledH3 color='#6b0000'>Test Finalizado</StyledH3>
-            <StyledP style={{ marginBottom: '2em' }}>Gracias por participar</StyledP>
-            <Button size="small" handleClick={handleClick}>ACEPTAR</Button>
-        </StyledModalContainer>
+            {closeEnabled ?
+                <>
+                    <StyledP style={{ marginBottom: '2em' }}>Gracias por participar</StyledP>
+                    <Button size="small" handleClick={handleClick}>ACEPTAR</Button>
+                </>
+                :
+                <StyledP style={{ marginBottom: '2em' }}>Guardando datos...</StyledP>
+            }
+    </StyledModalContainer >
     )
 }
 
