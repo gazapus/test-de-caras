@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import styled from 'styled-components';
-import { 
-    StyledInput, 
-    StyledLabel, 
-    StyledErrorMessage, 
-    StyledForm
+import {
+    StyledInput,
+    StyledLabel,
+    StyledErrorMessage,
+    StyledForm,
+    StyledCheckbox,
+    StyledRadioContainer
 } from '../styles/StyledForm';
 import Button from './Button';
 import Validators from '../utils/validators';
@@ -26,11 +28,12 @@ const StyledCenter = styled.div`
     margin: 2em 0 1em 0;
 `
 
-function FormLogin({handleSubmit}) {
+function FormLogin({ handleSubmit }) {
     const formik = useFormik({
         initialValues: {
             email: '',
-            password: ''
+            password: '',
+            keepLogged: false
         },
         onSubmit: values => {
             handleSubmit(values)
@@ -73,6 +76,16 @@ function FormLogin({handleSubmit}) {
                     minLength={6}
                 />
                 <StyledErrorMessage>{formik.errors.password}</StyledErrorMessage>
+                <StyledRadioContainer>
+                    <StyledCheckbox
+                        id="keepLogged"
+                        name="keepLogged"
+                        type="checkbox"
+                        onChange={formik.handleChange}
+                        value={true}
+                    />
+                    <label htmlFor="keepLogged">Mantener sesión abierta</label>
+                </StyledRadioContainer>
 
                 <StyledCenter>
                     <Button type="submit">Entrar</Button>

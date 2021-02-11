@@ -36,7 +36,7 @@ function LoginPage() {
     const history = useHistory();
 
     function handleSubmit(values) {
-        AuthService.signin(values.email, values.password)
+        AuthService.signin(values.email, values.password, values.keepLogged)
             .then(res => history.push(pathnames.home))
             .catch(err => alert(err.message))
     }
