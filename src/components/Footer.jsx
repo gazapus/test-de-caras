@@ -23,7 +23,7 @@ function Footer() {
     return (
         <StyledFooter>
             <StyledFooterContent>
-                El footer irá acá
+                Universidad Nacional de Loja
             </StyledFooterContent> 
         </StyledFooter>
     )
