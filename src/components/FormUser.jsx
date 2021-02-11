@@ -5,9 +5,9 @@ import {
     StyledLabel, 
     StyledErrorMessage, 
     StyledForm,
-    StyledCheckbox, 
-    StyledCheckboxContainer,
-    StyledCheckboxesContainer
+    StyledRadio, 
+    StyledRadioContainer,
+    StyledRadioesContainer
 } from '../styles/StyledForm';
 import Button from './Button';
 
@@ -96,9 +96,9 @@ function FormUser({handleSubmit}) {
 
                 <StyledColumn>
                     <StyledLabel>Sexo:</StyledLabel>
-                    <StyledCheckboxesContainer>
-                        <StyledCheckboxContainer>
-                            <StyledCheckbox
+                    <StyledRadioesContainer>
+                        <StyledRadioContainer>
+                            <StyledRadio
                                 id="male"
                                 name="sex"
                                 type="radio"
@@ -106,9 +106,9 @@ function FormUser({handleSubmit}) {
                                 value="male"
                             />
                             <label htmlFor="male">Masculino</label>
-                        </StyledCheckboxContainer>
-                        <StyledCheckboxContainer>
-                            <StyledCheckbox
+                        </StyledRadioContainer>
+                        <StyledRadioContainer>
+                            <StyledRadio
                                 id="female"
                                 name="sex"
                                 type="radio"
@@ -116,8 +116,8 @@ function FormUser({handleSubmit}) {
                                 value="female"
                             />
                             <label htmlFor="female">Femenino</label>
-                        </StyledCheckboxContainer>
-                    </StyledCheckboxesContainer>
+                        </StyledRadioContainer>
+                    </StyledRadioesContainer>
                     <StyledErrorMessage>{formik.errors.sex}</StyledErrorMessage>
                 </StyledColumn>
 
