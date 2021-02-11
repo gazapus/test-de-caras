@@ -11,7 +11,7 @@ const StyledText = styled.h1`
 
 function Logo() {
     return (
-        <Link style={{textDecoration: 'none'}} to={pathnames.home}>
+        <Link style={{textDecoration: 'none'}} to={pathnames.home} replace>
             <StyledText>CARAS-R</StyledText>
         </Link>
     )
