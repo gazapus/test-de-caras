@@ -17,7 +17,7 @@ const StyledContent = styled.main`
     box-sizing: border-box;
     flex-grow: 1;
 `
-function PageContainer({showAppBar = true, children}) {
+function PageContainer({showAppBar = false, children}) {
     return(
         <StyledContainer>
             <StyledContent>

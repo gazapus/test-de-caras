@@ -2,7 +2,7 @@ import AppBar from './AppBarBase';
 import Logo from './Logo';
 import User from './User';
 
-function TestAppBar({auth = true}) {
+function TestAppBar({showAppBar}) {
     return (
         <AppBar
             logo={<Logo/>}
@@ -10,7 +10,7 @@ function TestAppBar({auth = true}) {
                 {
                     name: "Nuevo ▾",
                     icon: "file",
-                    visible: auth,
+                    visible: showAppBar,
                     subItems: [
                         {
                             name: "Test individual",
@@ -28,7 +28,7 @@ function TestAppBar({auth = true}) {
                 },
                 {
                     name: "Registros ▾",
-                    visible: auth,
+                    visible: showAppBar,
                     icon: "table",
                     subItems: [
                         {
@@ -47,7 +47,7 @@ function TestAppBar({auth = true}) {
                 },
                 {
                     name: "Configuracion",
-                    visible: auth,
+                    visible: showAppBar,
                     icon: "cog",
                     action: () => console.log("config here 2"),
                 }

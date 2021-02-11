@@ -19,7 +19,7 @@ const UserName = styled.span`
     color: '#e0e0e0';
 `
 
-function User({username = "guest"}) {
+function User({username = "invitado"}) {
     return (
         <UserContainer>
             <FontAwesomeIcon icon="user-circle" size="lg"/>
