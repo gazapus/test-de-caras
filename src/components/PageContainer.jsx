@@ -17,11 +17,11 @@ const StyledContent = styled.main`
     box-sizing: border-box;
     flex-grow: 1;
 `
-function PageContainer({showAppBar = false, children}) {
+function PageContainer({showAppBar = true, children}) {
     return(
         <StyledContainer>
             <StyledContent>
-                <AppBar auth={showAppBar}/>
+                <AppBar showAppBar={showAppBar}/>
                 {children}
             </StyledContent>
             <Footer/>
