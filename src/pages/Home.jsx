@@ -1,6 +1,6 @@
 //import { useEffect } from 'react';
 //import { channels } from '../../src/shared/constants';
-import paths from '../utils/paths'
+//import paths from '../utils/paths'
 import { Link } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
 import { ThemeContext } from '../ContextGenerator';
@@ -38,7 +38,7 @@ function Home() {
     setUserData(null)
     // **********************************
     return (
-        <PageContainer>
+        <PageContainer showItems={true}>
             <StyledTitle>Test de Caras</StyledTitle>
             <Link to={'/test/user/6022d03d5ff9110f60263e68/0'}>
                 <StyledButton>

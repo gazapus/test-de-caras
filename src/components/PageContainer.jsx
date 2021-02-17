@@ -17,14 +17,15 @@ const StyledContent = styled.main`
     box-sizing: border-box;
     flex-grow: 1;
 `
-function PageContainer({showAppBar = true, children}) {
-    return(
+function PageContainer({ showItems = false, children }) {
+
+    return (
         <StyledContainer>
             <StyledContent>
-                <AppBar showAppBar={showAppBar}/>
+                <AppBar showItems={showItems} />
                 {children}
             </StyledContent>
-            <Footer/>
+            <Footer />
         </StyledContainer>
     )
 }

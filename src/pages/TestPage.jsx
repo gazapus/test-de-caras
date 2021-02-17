@@ -46,6 +46,7 @@ function TestPage() {
 
     useEffect(() => {
         setTimeout(() => setTestFinished(true), THREE_MINUTES);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -87,6 +88,7 @@ function TestPage() {
                 })
                 .finally(() => setSuccefullySaved(true))
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [testFinished])
 
 
@@ -187,7 +189,7 @@ function ModalContent({ handleClick, closeEnabled }) {
                 :
                 <StyledP style={{ marginBottom: '2em' }}>Guardando datos...</StyledP>
             }
-    </StyledModalContainer >
+        </StyledModalContainer >
     )
 }
 
