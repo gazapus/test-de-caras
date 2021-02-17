@@ -1,8 +1,11 @@
 import AppBar from './AppBarBase';
 import Logo from './Logo';
 import User from './User';
+import useUserLogged from '../hooks/useLoggedUser';
 
-function TestAppBar({showAppBar}) {
+function TestAppBar({showItems}) {
+    const userLogged = useUserLogged();
+
     return (
         <AppBar
             logo={<Logo/>}
@@ -10,7 +13,7 @@ function TestAppBar({showAppBar}) {
                 {
                     name: "Nuevo ▾",
                     icon: "file",
-                    visible: showAppBar,
+                    visible: showItems && userLogged,
                     subItems: [
                         {
                             name: "Test individual",
@@ -28,7 +31,7 @@ function TestAppBar({showAppBar}) {
                 },
                 {
                     name: "Registros ▾",
-                    visible: showAppBar,
+                    visible: showItems && userLogged,
                     icon: "table",
                     subItems: [
                         {
@@ -47,12 +50,12 @@ function TestAppBar({showAppBar}) {
                 },
                 {
                     name: "Configuracion",
-                    visible: showAppBar,
+                    visible: showItems && userLogged,
                     icon: "cog",
                     action: () => console.log("config here 2"),
                 }
             ]}
-            right={<User/>}
+            right={<User logged={userLogged}/>}
         />
     )
 }
