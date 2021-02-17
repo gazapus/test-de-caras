@@ -5,7 +5,8 @@ function signin(email, password, keepLogged) {
     return http.post("/auth/signin", { email, password })
         .then(response => {
             if (response.status === 200) {
-                if(keepLogged) {
+                console.log("logueado")
+                if (keepLogged) {
                     localStorage.setItem("user", JSON.stringify(response.data));
                 } else {
                     sessionStorage.setItem("user", JSON.stringify(response.data));
@@ -27,9 +28,12 @@ function signup(data) {
 
 const logout = () => {
     localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
 };
 
 const getCurrentUser = () => {
+    let sessionUser = sessionStorage.getItem("user");
+    if (sessionUser) return JSON.parse(sessionUser);
     return JSON.parse(localStorage.getItem("user"));
 };
 

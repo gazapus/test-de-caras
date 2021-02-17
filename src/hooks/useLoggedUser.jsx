@@ -1,8 +1,10 @@
 import AuthService from "../services/auth.service";
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function useLoggedUser() {
     const [userLoggeed, setUserLogged] = useState(false);
+    const history = useHistory();
 
     useEffect(() => {
         AuthService.isLogged()
@@ -12,7 +14,8 @@ function useLoggedUser() {
             .catch(err => {
                 console.error(err);
             })
-    }, []);
+    }, [history]);
+    
     return userLoggeed;
 }
 
