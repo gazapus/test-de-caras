@@ -11,10 +11,11 @@ function signin(email, password, keepLogged) {
                 } else {
                     sessionStorage.setItem("user", JSON.stringify(response.data));
                 }
+                return false;
             }
         })
         .catch(err => {
-            console.log(err.message);
+            return(err.message);
         })
 };
 

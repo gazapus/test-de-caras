@@ -35,10 +35,13 @@ function LoginPage() {
     const [modalOpen, setModalOpen] = useState(false);
     const history = useHistory();
 
-    function handleSubmit(values) {
-        AuthService.signin(values.email, values.password, values.keepLogged)
-            .then(res => history.push(pathnames.home))
-            .catch(err => alert(err.message))
+    async function handleSubmit(values) {
+        let error = await AuthService.signin(values.email, values.password, values.keepLogged);
+        if (error) {
+            alert(error)
+        } else {
+            history.push(pathnames.home)
+        }
     }
 
     return (

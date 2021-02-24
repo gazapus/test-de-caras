@@ -13,6 +13,7 @@ function useLoggedUser() {
             })
             .catch(err => {
                 console.error(err);
+                AuthService.logout();
             })
     }, [history]);
     

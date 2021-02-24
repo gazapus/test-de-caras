@@ -1,19 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function useWindowHeight() {
-    const [ height, setHeight ] = useState(0);
+function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({
+        width: undefined,
+        height: undefined,
+    });
 
     useEffect(() => {
         function handleResize() {
-            console.log("change size" + window.innerHeight)
-            setHeight(window.innerHeight);
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
         }
-        setHeight(window.innerHeight);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [])
+        window.addEventListener("resize", handleResize);
+        window.addEventListener("load", handleResize);
+        handleResize();
+        return () => {
+            window.removeEventListener("resize", handleResize)
+            window.removeEventListener("load", handleResize)
+        };
+    }, []); // Empty array ensures that effect is only run on mount
 
-    return height;
+    return windowSize;
 }
 
-export default useWindowHeight;
+export default useWindowSize;

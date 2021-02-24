@@ -7,6 +7,7 @@ const StyledText = styled.h1`
     font-family: RobotoBold;
     font-size: 1.2em;
     letter-spacing: 0.2em;
+    white-space: nowrap;
 `
 
 function Logo() {
