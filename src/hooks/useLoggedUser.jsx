@@ -7,14 +7,15 @@ function useLoggedUser() {
     const history = useHistory();
 
     useEffect(() => {
-        AuthService.isLogged()
-            .then(response => {
-                setUserLogged(response.status === 200);
-            })
-            .catch(err => {
-                console.error(err);
-                AuthService.logout();
-            })
+        if(AuthService.getCurrentUser())
+            AuthService.isLogged()
+                .then(response => {
+                    setUserLogged(response.status === 200);
+                })
+                .catch(err => {
+                    console.error(err);
+                    AuthService.logout();
+                })
     }, [history]);
     
     return userLoggeed;

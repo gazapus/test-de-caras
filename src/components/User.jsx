@@ -112,6 +112,7 @@ function User({ logged }) {
         }
     }, [logged, windowSize])
 
+    // check if the button isn't clicked
     useEffect(() => {
         function handleClickOut(event) {
             if(profileButton.current) {
