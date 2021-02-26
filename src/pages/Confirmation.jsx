@@ -17,7 +17,7 @@ const StyledCenterContainer = styled.div`
     margin: 3em 1em 3em 1em;
 `
 
-function Confirmation({ handleClick }) {
+function Confirmation() {
     const { user_id } = useParams();
     const [loading, setLoading] = useState(true);
     const [ confirmated, setConfirmated] = useState(true);
@@ -39,7 +39,7 @@ function Confirmation({ handleClick }) {
                 setConfirmated(false)
             })
             .finally(() => setLoading(false))
-    }, [])
+    }, [user_id])
 
     if(loading) return(
         <PageContainer>

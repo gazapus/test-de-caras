@@ -9,3 +9,8 @@
  - Log in de usuarios
  - Generar link de test
  - Visualizar resultados de los tests
+
+ # Deuda técnica:
+ - Validacion de usuario registrado pero no confirmado al registrar
+ - Agregar atributo eliminado a usuarios
+ - 
