@@ -35,7 +35,7 @@ const SpinnerStyled = styled.div`
     }
 `
 
-function Spinner({ size = 10, color1 = "red", color2="blue" }) {
+function Spinner({ size = 3, color1 = "#9CE5F9", color2="#69B1C5" }) {
     return (
         <SpinnerStyled 
             size={size}

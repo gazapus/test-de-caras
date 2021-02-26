@@ -10,6 +10,7 @@ import {
 } from '../styles/StyledForm';
 import Button from './Button';
 import Validators from '../utils/validators';
+import Spinner from '../components/Spinner';
 
 const FormContainer = styled.div`
     display: flex;
@@ -28,7 +29,7 @@ const StyledCenter = styled.div`
     margin: 2em 0 1em 0;
 `
 
-function FormLogin({ handleSubmit }) {
+function FormLogin({ handleSubmit, loading = false }) {
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -88,7 +89,10 @@ function FormLogin({ handleSubmit }) {
                 </StyledRadioContainer>
 
                 <StyledCenter>
-                    <Button type="submit">Entrar</Button>
+                    <Button type="submit" disabled={loading}>Entrar</Button>
+                </StyledCenter>
+                <StyledCenter>
+                    {loading ? <Spinner size={2} /> : ''}
                 </StyledCenter>
             </StyledForm>
         </FormContainer>

@@ -34,20 +34,23 @@ const StyledPseudoAnchor = styled.span`
 function LoginPage() {
     const [modalOpen, setModalOpen] = useState(false);
     const history = useHistory();
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit(values) {
+        setLoading(true);
         let error = await AuthService.signin(values.email, values.password, values.keepLogged);
         if (error) {
-            alert(error)
+            setLoading(false);
+            alert(error);
         } else {
-            history.push(pathnames.home)
+            history.push(pathnames.home);
         }
     }
 
     return (
         <PageContainer>
             <StyledTitle>Iniciar Sesión</StyledTitle>
-            <FormLogin handleSubmit={handleSubmit} />
+            <FormLogin handleSubmit={handleSubmit} loading={loading} />
             <Modal
                 open={modalOpen}
                 autoClose={false}

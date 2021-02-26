@@ -34,5 +34,5 @@ export {
     StyledH2, 
     StyledH3,
     StyledH4,
-    StyledP
+    StyledP,
 }

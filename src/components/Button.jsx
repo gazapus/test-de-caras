@@ -46,12 +46,19 @@ const StyledButton = styled.button`
 
 `
 
-function Button({ handleClick, size = "medium", children, type="button" }) {
+function Button({ 
+    handleClick, 
+    size = "medium", 
+    children, 
+    type="button", 
+    disabled = false 
+}) {
     return (
         <StyledButton
             onClick={handleClick}
             size={size}
             type={type}
+            disabled={disabled}
         >
             {children}
         </StyledButton>

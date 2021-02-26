@@ -6,6 +6,7 @@ import UserForm from './pages/FormTest';
 import Instrucctions from './pages/Instrucctions';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Confirmation from './pages/Confirmation';
 import paths from './utils/paths'
 
 function Routes() {
@@ -18,7 +19,7 @@ function Routes() {
             <Route exact path={paths.instrucctions} component={Instrucctions} />
             <Route exact path={paths.signup} component={Signup} />
             <Route exact path={paths.login} component={Login} />
-
+            <Route exact path={paths.confirmation} component={Confirmation} />
         </Switch>
     );
 }

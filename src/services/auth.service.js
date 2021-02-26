@@ -38,12 +38,17 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
+function confirm(user_id) {
+    return http.post(`/auth/confirmation/${user_id}`);
+}
+
 let methods = {
     signin,
     signup,
     logout,
     getCurrentUser,
-    isLogged
+    isLogged,
+    confirm
 };
 
 export default methods;
