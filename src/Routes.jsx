@@ -1,4 +1,5 @@
 import React from 'react';
+import paths from './utils/paths'
 import { Switch, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Test from './pages/TestPage';
@@ -7,7 +8,7 @@ import Instrucctions from './pages/Instrucctions';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Confirmation from './pages/Confirmation';
-import paths from './utils/paths'
+import Profile from './pages/Profile';
 
 function Routes() {
     return (
@@ -20,6 +21,7 @@ function Routes() {
             <Route exact path={paths.signup} component={Signup} />
             <Route exact path={paths.login} component={Login} />
             <Route exact path={paths.confirmation} component={Confirmation} />
+            <Route exact path={paths.profile} component={Profile} />
         </Switch>
     );
 }

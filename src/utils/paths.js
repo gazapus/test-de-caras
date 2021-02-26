@@ -6,7 +6,8 @@ const paths = {
     test_user: '/test/user/:user_id/:group_id',
     signup: '/register',
     login: '/login',
-    confirmation: '/confirmation/:user_id'
+    confirmation: '/confirmation/:user_id',
+    profile: '/profile'
 }
 
 export default paths;
