@@ -15,7 +15,7 @@ function signin(email, password, keepLogged) {
             }
         })
         .catch(err => {
-            return(err.message);
+            return(err.response.data.message);
         })
 };
 

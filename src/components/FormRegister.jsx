@@ -8,6 +8,7 @@ import {
 } from '../styles/StyledForm';
 import Button from './Button';
 import Validators from '../utils/validators';
+import Spinner from '../components/Spinner';
 
 const FormContainer = styled.div`
     display: flex;
@@ -26,7 +27,7 @@ const StyledCenter = styled.div`
     margin: 2em 0 1em 0;
 `
 
-function FormUser({handleSubmit}) {
+function FormUser({handleSubmit, loading = false}) {
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -105,7 +106,11 @@ function FormUser({handleSubmit}) {
                 <StyledErrorMessage>{formik.errors.password}</StyledErrorMessage>
 
                 <StyledCenter>
-                    <Button type="submit">Aceptar</Button>
+                    <Button type="submit" disabled={loading}>Aceptar</Button>
+                </StyledCenter>
+
+                <StyledCenter>
+                    {loading ? <Spinner size={2} /> : ''}
                 </StyledCenter>
             </StyledForm>
         </FormContainer>

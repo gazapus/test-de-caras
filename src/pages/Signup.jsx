@@ -18,25 +18,27 @@ const StyledTitle = styled.h3`
 
 function SignUpPage() {
     const [ registerFinished, setRegisterFinished] = useState(false);
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
 
     function handleSubmit(values) {
+        setLoading(true);
         AuthService.signup(values)
             .then(res => {
-                console.log(values)
-                console.log(res)
                 setRegisterFinished(true);
             })
             .catch(err => {
-                console.log(err)
-                alert(err.message)
+                alert(err.response.data.message)
             })
+            .finally(() => 
+                setLoading(false)
+            );
     }
 
     return(
         <PageContainer>
             <StyledTitle>Registrarse</StyledTitle>
-            <FormRegister handleSubmit={handleSubmit}/>
+            <FormRegister handleSubmit={handleSubmit} loading={loading}/>
             <Modal
                 open={registerFinished}
                 autoClose={false}
