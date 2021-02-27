@@ -9,14 +9,11 @@ import { StyledH2, StyledH3, StyledP } from '../styles/StyledTitles';
 import pathnames from '../utils/paths';
 import brakpoints from '../utils/breakpoins';
 import AuthService from '../services/auth.service';
+import UserService from '../services/user.service';
 
 function Profile() {
     const history = useHistory();
-    const [user, setUser] = useState({
-        name: '',
-        lastname: '',
-        email: ''
-    });
+    const [user, setUser] = useState({ name: '', lastname: '', email: '', id: '' });
     const [loading, setLoading] = useState(false);
     const [mailChanged, setMailChanged] = useState(false);
 
@@ -27,7 +24,8 @@ function Profile() {
                 setUser({
                     name: userInfo.name,
                     lastname: userInfo.lastname,
-                    email: userInfo.email
+                    email: userInfo.email,
+                    id: userInfo.id
                 });
             })
             .catch(err => {
@@ -38,10 +36,22 @@ function Profile() {
 
     function handleSubmit(data) {
         setLoading(true);
+        const newData = {
+            name: data.name,
+            lastname: data.lastname,
+            password: data.newPassword
+        }
+        UserService.updateWithoutMail(user.id, newData)
+            .then(res => { AuthService.updateLocal(res.data) })
+            .catch(err => alert("ERROR, no se pudo actualizar"))
+            .finally(() => {
+                setLoading(false);
+                history.go(0);
+            });
         if (data.email !== user.email) {
             setMailChanged(true);
         }
-        console.log(data)
+
     }
 
     return (

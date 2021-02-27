@@ -42,13 +42,25 @@ function confirm(user_id) {
     return http.post(`/auth/confirmation/${user_id}`);
 }
 
+function updateLocal(data) {
+    let user = getCurrentUser();
+    user.name = data.name;
+    user.lastname = data.lastname;
+    if(sessionStorage.getItem("user")){
+        sessionStorage.setItem("user", JSON.stringify(user));
+    } else {
+        localStorage.setItem("user", JSON.stringify(user));
+    }
+}
+
 let methods = {
     signin,
     signup,
     logout,
     getCurrentUser,
     isLogged,
-    confirm
+    confirm,
+    updateLocal
 };
 
 export default methods;
