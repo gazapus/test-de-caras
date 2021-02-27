@@ -92,7 +92,7 @@ function FormUser({handleSubmit, loading = false}) {
                 />
                 <StyledErrorMessage>{formik.errors.email}</StyledErrorMessage>
 
-                <StyledLabel htmlFor="email">Password:</StyledLabel>
+                <StyledLabel htmlFor="password">Password:</StyledLabel>
                 <StyledInput
                     id="password"
                     name="password"

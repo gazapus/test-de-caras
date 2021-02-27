@@ -39,6 +39,7 @@ const StyledInput = styled.input`
     background-color: #f0f0f0;
     border-color: #292929;
     width: 100%;
+    text-align: ${props => props.align ? props.align : 'left'};
     &:focus {
         outline: none;
         background-color:#E0FBFC;

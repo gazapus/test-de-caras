@@ -133,7 +133,11 @@ function User({ logged }) {
 
     function logout() {
         AuthService.logout();
-        history.go(0);
+        history.push(pathnames.home);
+    }
+
+    function openProfile() {
+        history.push(pathnames.profile);
     }
 
     return (
@@ -158,7 +162,7 @@ function User({ logged }) {
                 visible={openOptions}
             >
                 <DropdownUserList>
-                    <DropdownItemUser>Perfil</DropdownItemUser>
+                    <DropdownItemUser onClick={openProfile}>Perfil</DropdownItemUser>
                     <DropdownItemUser onClick={logout}>Salir</DropdownItemUser>
                 </DropdownUserList>
             </DropdownUser>
