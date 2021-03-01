@@ -14,7 +14,8 @@ import UserService from '../services/user.service';
 function Profile() {
     const history = useHistory();
     const [user, setUser] = useState({ name: '', lastname: '', email: '', id: '' });
-    const [loading, setLoading] = useState(false);
+    const [loadingEmailChange, setLoadingEmailChange] = useState(false);
+    const [loadingPersonalInfoChange, setLoadingPersonalInfoChange] = useState(false);
     const [mailChanged, setMailChanged] = useState(false);
 
     useEffect(() => {
@@ -32,26 +33,31 @@ function Profile() {
                 AuthService.logout();
                 history.push(pathnames.home);
             })
-    }, [])
+    }, [])  
 
-    function handleSubmit(data) {
-        setLoading(true);
+    function handleSubmit(newChanges) {
+        setLoadingPersonalInfoChange(true);
+        setLoadingEmailChange(true);
         const newData = {
-            name: data.name,
-            lastname: data.lastname,
-            password: data.newPassword
+            name: newChanges.name,
+            lastname: newChanges.lastname,
+            password: newChanges.newPassword
         }
         UserService.updateWithoutMail(user.id, newData)
-            .then(res => { AuthService.updateLocal(res.data) })
-            .catch(err => alert("ERROR, no se pudo actualizar"))
-            .finally(() => {
-                setLoading(false);
-                history.go(0);
-            });
-        if (data.email !== user.email) {
-            setMailChanged(true);
-        }
-
+            .then(res => { 
+                AuthService.updateLocal(res.data)
+                if(newChanges.email !== user.email) {
+                    UserService.createEmailChange(user.id, user.email, newChanges.email)
+                    .then(res => setMailChanged(true))
+                    .catch(err => alert("ERROR, no se pudo cambiar el email, intente más tarde"))
+                    .finally(() => setLoadingEmailChange(false));
+                } else {
+                    setLoadingEmailChange(false);
+                }
+            })
+            .catch(err => alert("ERROR, no se pudo actualizar la información"))
+            .finally(() => setLoadingPersonalInfoChange(false));
+        
     }
 
     return (
@@ -59,7 +65,7 @@ function Profile() {
             <StyledH2>MI PERFIL</StyledH2>
             <FormProfile
                 handleSubmit={handleSubmit}
-                loading={loading}
+                loading={loadingEmailChange && loadingPersonalInfoChange}
                 defaultName={user.name}
                 defaultLastname={user.lastname}
                 defaultEmail={user.email}
@@ -105,7 +111,8 @@ function ModalContent({ handleClick }) {
         <StyledModalContainer>
             <StyledH3 color='#6b0000'>Se ha enviado un email para confirmar el cambio</StyledH3>
             <StyledP style={{ marginBottom: '2em' }}>
-                Si no ve el correo en su bandeja de entrada consulte en la bandeja de spam
+                Recuerde que debe confirmar el cambio desde la cuenta vinculada para acreditar el cambio de dirección, 
+                hasta entonces seguirá vigente la dirección de mail actual.
             </StyledP>
             <Button size="small" handleClick={handleClick}>ACEPTAR</Button>
         </StyledModalContainer>
