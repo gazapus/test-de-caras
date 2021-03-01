@@ -38,7 +38,7 @@ const StyledButton = styled.button`
         background-color: #98C1D9;
     }
     &:hover {
-        cursor: pointer;
+        cursor: ${props => props.disabled ? 'wait' : 'pointer'};
         border-color: #EE6C4D;
         color: #EE6C4D;
         background-color: #293241;
