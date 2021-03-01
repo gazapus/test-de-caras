@@ -49,7 +49,7 @@ function Profile() {
                 if(newChanges.email !== user.email) {
                     UserService.createEmailChange(user.id, user.email, newChanges.email)
                     .then(res => setMailChanged(true))
-                    .catch(err => alert("ERROR, no se pudo cambiar el email, intente más tarde"))
+                    .catch(err => alert(err.response.data.message))
                     .finally(() => setLoadingEmailChange(false));
                 } else {
                     setLoadingEmailChange(false);
@@ -65,7 +65,7 @@ function Profile() {
             <StyledH2>MI PERFIL</StyledH2>
             <FormProfile
                 handleSubmit={handleSubmit}
-                loading={loadingEmailChange && loadingPersonalInfoChange}
+                loading={loadingEmailChange || loadingPersonalInfoChange}
                 defaultName={user.name}
                 defaultLastname={user.lastname}
                 defaultEmail={user.email}

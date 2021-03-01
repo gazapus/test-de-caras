@@ -137,14 +137,16 @@ function FormLogin({ handleSubmit, loading = false, defaultName, defaultLastname
                                 maxLength={20}
                                 minLength={6}
                                 placeholder="Solo si desea cambiar su contraseña"
-                                autoComplete="off"
+                                autoComplete="nope"
                             />
                             <StyledErrorMessage>{formik.errors.newPassword}</StyledErrorMessage>
                         </>
                         :
                         <></>
                 }
-
+                <StyledCenter>
+                    {loading ? <Spinner size={2} /> : ''}
+                </StyledCenter>
                 {
                     enabledModification ?
                         <>
@@ -158,11 +160,6 @@ function FormLogin({ handleSubmit, loading = false, defaultName, defaultLastname
                         :
                         <></>
                 }
-
-
-                <StyledCenter>
-                    {loading ? <Spinner size={2} /> : ''}
-                </StyledCenter>
             </StyledForm>
         </FormContainer>
     )
