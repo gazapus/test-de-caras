@@ -5,8 +5,8 @@ function updateWithoutMail(id, data) {
     return http.put(`/users/update/nomail/${id}`, data, { headers: authHeader() });
 }
 
-function createEmailChange(id, originalEmail, newEmail) {
-    return http.post(`/changerequest/create`, {id, originalEmail, newEmail}, { headers: authHeader() });
+function createEmailChange(user_id, originalEmail, newEmail) {
+    return http.post(`/changerequest/create`, {user_id, originalEmail, newEmail}, { headers: authHeader() });
 }
 
 function confirmEmailChange(id) {

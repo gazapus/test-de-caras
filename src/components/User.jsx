@@ -96,8 +96,10 @@ function User({ logged }) {
     useEffect(() => {
         if (logged) {
             let user = AuthService.getCurrentUser();
-            setName(user.name.toUpperCase());
-            setAvatarURL(`https://ui-avatars.com/api/?name=${user.name}+${user.lastname}`);
+            if(user) {  // Parche para atajar el error de null user al desloguearse tras confirmar/cancelar cambio de email
+                setName(user.name.toUpperCase());
+                setAvatarURL(`https://ui-avatars.com/api/?name=${user.name}+${user.lastname}`);
+            }
         }
     }, [logged])
 

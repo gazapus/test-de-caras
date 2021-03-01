@@ -13,4 +13,10 @@
  # Deuda técnica:
  - Validacion de usuario registrado pero no confirmado al registrar
  - Agregar atributo eliminado a usuarios
- - 
+
+
+# To Fix:
+- Al salir desloguearse en la main page tirá un warning y no lo permite despues de cambiar mail
+- Prevenir que coloque el navegador la contraseña porque la cambia
+- Desloguearse al cambiar de correo o cancelarlo
+- Verificar envio de mails y por que lo da como ok

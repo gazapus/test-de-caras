@@ -53,11 +53,11 @@ function Profile() {
                     .finally(() => setLoadingEmailChange(false));
                 } else {
                     setLoadingEmailChange(false);
+                    history.go(0);
                 }
             })
             .catch(err => alert("ERROR, no se pudo actualizar la información"))
             .finally(() => setLoadingPersonalInfoChange(false));
-        
     }
 
     return (

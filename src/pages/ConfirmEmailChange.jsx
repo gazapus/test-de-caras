@@ -6,8 +6,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { StyledH3, StyledP } from '../styles/StyledTitles';
 import Button from '../components/Button';
 import UserService from '../services/user.service';
-import Spinner from '../components/Spinner';
 import AuthService from '../services/auth.service';
+import Spinner from '../components/Spinner';
 
 const StyledCenterContainer = styled.div`
     display: flex;
@@ -18,18 +18,22 @@ const StyledCenterContainer = styled.div`
     margin: 3em 1em 3em 1em;
 `
 
-function CancelationChange() {
+function ConfirmationChange() {
     const { request_id } = useParams();
     const [loading, setLoading] = useState(true);
     const [confirmated, setConfirmated] = useState(true);
     const history = useHistory();
 
     function handleClick() {
-        history.push(pathnames.home)
+        if(confirmated) {
+            history.push(pathnames.login)
+        } else {
+            history.push(pathnames.home)
+        }
     }
 
     useEffect(() => {
-        UserService.cancelEmailChange(request_id)
+        UserService.confirmEmailChange(request_id)
             .then(res => {
                 AuthService.logout();
                 setConfirmated(true);
@@ -55,11 +59,11 @@ function CancelationChange() {
                 {
                     confirmated ?
                         <>
-                            <StyledH3 color='#2c9c10'>¡Los cambios se han efectuado exitosamente!</StyledH3>
+                            <StyledH3 color='#2c9c10'>¡La nueva dirección se ha confirmado correctamente!</StyledH3>
                             <StyledP style={{ marginBottom: '2em' }} textAlign="center">
-                                Si la cuenta es suya recuerde cambiar la contraseña para mayor seguridad
-                        </StyledP>
-                            <Button size="medium" handleClick={handleClick}>Aceptar</Button>
+                                Ahora ya puede ingresar a a su cuenta con la nueva dirección de correo electrónico
+                            </StyledP>
+                            <Button size="medium" handleClick={handleClick}>Iniciar sesión</Button>
                         </>
                         :
                         <>
@@ -75,4 +79,4 @@ function CancelationChange() {
     )
 }
 
-export default CancelationChange;
+export default ConfirmationChange;
