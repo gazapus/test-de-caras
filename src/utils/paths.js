@@ -7,7 +7,9 @@ const paths = {
     signup: '/register',
     login: '/login',
     confirmation: '/confirmation/:user_id',
-    profile: '/profile'
+    profile: '/profile',
+    cancel_change: '/cancel-change/:request_id',
+    confirm_change: '/confirm-change/:request_id',
 }
 
 export default paths;

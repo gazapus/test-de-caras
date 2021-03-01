@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Confirmation from './pages/Confirmation';
 import Profile from './pages/Profile';
+import CancelationChange from './pages/CancelEmailChange';
 
 function Routes() {
     return (
@@ -22,6 +23,7 @@ function Routes() {
             <Route exact path={paths.login} component={Login} />
             <Route exact path={paths.confirmation} component={Confirmation} />
             <Route exact path={paths.profile} component={Profile} />
+            <Route exact path={paths.cancel_change} component={CancelationChange} />
         </Switch>
     );
 }
