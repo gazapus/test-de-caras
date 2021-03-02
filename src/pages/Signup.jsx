@@ -77,7 +77,7 @@ const StyledModalContainer = styled.div`
 function ModalContent({ handleClick }) {
     return (
         <StyledModalContainer>
-            <StyledH3 color='#6b0000'>Se ha enviado un email de confirmación</StyledH3>
+            <StyledH3 color='#006b00'>Se ha enviado un email de confirmación</StyledH3>
             <StyledP style={{ marginBottom: '2em' }}>
                 Si no ve el correo en su bandeja de entrada consulte en la bandeja de spam
             </StyledP>
