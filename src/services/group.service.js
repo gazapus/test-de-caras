@@ -1,16 +1,20 @@
 import http from "../utils/http-common";
-//import authHeader from "./auth-header";
+import authHeader from "./auth-header";
 
 function getAll() {
     return http.get("/group/get");
 };
 
 function get(id) {
-    return http.get(`/group/get/${id}`);
+    return http.get(`/group/get/one/${id}`);
+};
+
+function getUniversal() {
+    return http.get(`/group/get/universal`, {headers: authHeader});
 };
 
 function create(data) {
-    return http.post("/group/create", data);
+    return http.post("/group/create", data, {headers: authHeader});
 };
 
 function addTest(test_id, group_id) {
@@ -21,7 +25,8 @@ let methods = {
     getAll,
     get,
     create,
-    addTest
+    addTest,
+    getUniversal
 };
 
 export default methods;
