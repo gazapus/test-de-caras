@@ -27,7 +27,6 @@ function Home() {
                     EMPEZAR
                 </StyledButton>
             </Link>
-
         </PageContainer>
     );
 }

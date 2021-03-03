@@ -18,6 +18,7 @@
 # Today
 - Crear vista de creacion de grupo
 - Crear grupo universal y link al crear usuario
-- Crear modal de copia del link del grupo
-- Agregar el link universal al usuario
 - Agregar grupos id al usuario ?
+
+# To Production
+- Nombre de variable en heroku  REACT_APP_HOST
