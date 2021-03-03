@@ -10,11 +10,11 @@ function get(id) {
 };
 
 function getUniversal() {
-    return http.get(`/group/get/universal`, {headers: authHeader});
+    return http.get(`/group/get/universal`, {headers: authHeader()});
 };
 
 function create(data) {
-    return http.post("/group/create", data, {headers: authHeader});
+    return http.post("/group/create", data, {headers: authHeader()});
 };
 
 function addTest(test_id, group_id) {

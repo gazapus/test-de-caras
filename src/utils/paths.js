@@ -1,4 +1,5 @@
 const paths = {
+    server: process.env.REACT_APP_HOST || 'http://localhost:3000/#/',
     home: '/',
     test: '/test',
     userForm: '/userform',
