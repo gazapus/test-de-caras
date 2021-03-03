@@ -11,6 +11,7 @@ import Confirmation from './pages/Confirmation';
 import Profile from './pages/Profile';
 import CancelationChange from './pages/CancelEmailChange';
 import ConfirmationChange from './pages/ConfirmEmailChange';
+import GenerateUniversal from './pages/GenerateUniversalLink';
 
 function Routes() {
     return (
@@ -26,6 +27,7 @@ function Routes() {
             <Route exact path={paths.profile} component={Profile} />
             <Route exact path={paths.cancel_change} component={CancelationChange} />
             <Route exact path={paths.confirm_change} component={ConfirmationChange} />
+            <Route exact path={paths.universal_link} component={GenerateUniversal} />
         </Switch>
     );
 }

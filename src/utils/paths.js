@@ -10,6 +10,7 @@ const paths = {
     profile: '/profile',
     cancel_change: '/cancel-change/:request_id',
     confirm_change: '/confirm-change/:request_id',
+    universal_link: '/generate/universal',
 }
 
 export default paths;
