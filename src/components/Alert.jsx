@@ -70,7 +70,7 @@ function Alert({ title, message, autoclose = true, type = "default", restartFlag
     useEffect(() => {
         if (!containerRef.current || !autoclose) return;
         setVisible(true);
-        let escala = 0.0015;
+        let escala = 0.002;
         containerRef.current.style.opacity = 1;
         var fadeEffect = setInterval(function () {
             if (containerRef.current.style.opacity > 0) {
@@ -83,7 +83,7 @@ function Alert({ title, message, autoclose = true, type = "default", restartFlag
             }
         }, 100);
         return (() => clearInterval(fadeEffect))
-    }, [containerRef, title, message, type, restartFlag]);
+    }, [containerRef, title, message, type, restartFlag, autoclose]);
 
     let color;
     switch (type) {

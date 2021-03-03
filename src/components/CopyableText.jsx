@@ -1,24 +1,12 @@
 import styled from 'styled-components';
-import brakpoints from '../utils/breakpoins';
 import { useRef, useState } from 'react';
 import Alert from './Alert';
 
 const StyledContainer = styled.div`
     display: flex;
-    padding: 0.3em;
     box-sizing: border-box;
-    @media ${brakpoints.mobile} { 
-        width: 96vw;
-    }
-    @media ${brakpoints.tablet} { 
-        width: 80vw;
-    }
-    @media ${brakpoints.desktop} { 
-        width: 50vw;
-    }
-    @media ${brakpoints.desktopL} { 
-        width: 40vw;
-    }
+    min-width: 4em;
+    flex-grow: 1;
 `
 const StyledText = styled.input`
     background-color: ${props => props.selected ? '#c7b4b4' : '#cecece'}; 
