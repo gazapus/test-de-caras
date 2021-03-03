@@ -17,12 +17,12 @@ const StyledContent = styled.main`
     box-sizing: border-box;
     flex-grow: 1;
 `
-function PageContainer({ showItems = false, children }) {
+function PageContainer({ showItems = true, children }) {
 
     return (
         <StyledContainer>
             <StyledContent>
-                <AppBar showItems={showItems} />
+                <AppBar showItems={showItems}/>
                 {children}
             </StyledContent>
             <Footer />

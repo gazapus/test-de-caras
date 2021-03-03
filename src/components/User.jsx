@@ -135,7 +135,11 @@ function User({ logged }) {
 
     function logout() {
         AuthService.logout();
-        history.push(pathnames.home);
+        if(window.location.href.split("/").pop() === "") {
+            history.go(0);
+        } else {
+            history.push(pathnames.home);
+        }
     }
 
     function openProfile() {

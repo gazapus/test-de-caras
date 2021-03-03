@@ -2,9 +2,12 @@ import AppBar from './AppBarBase';
 import Logo from './Logo';
 import User from './User';
 import useUserLogged from '../hooks/useLoggedUser';
+import {useHistory} from 'react-router-dom';
+import pathnames from '../utils/paths';
 
-function TestAppBar({showItems}) {
+function TestAppBar({showItems = true}) {
     const userLogged = useUserLogged();
+    const history = useHistory();
 
     return (
         <AppBar
@@ -17,7 +20,7 @@ function TestAppBar({showItems}) {
                     subItems: [
                         {
                             name: "Test individual",
-                            action: () => console.log("individual"),
+                            action: () => history.push(pathnames.universal_link),
                         },
                         {
                             name: "Test grupal",

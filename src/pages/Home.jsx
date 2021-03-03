@@ -20,7 +20,7 @@ function Home() {
     const { setUserData } = useContext(ThemeContext);
     setUserData(null)
     return (
-        <PageContainer showItems={true}>
+        <PageContainer >
             <StyledTitle>Test de Caras</StyledTitle>
             <Link to={'/test/user/6022d03d5ff9110f60263e68/0'}>
                 <StyledButton>

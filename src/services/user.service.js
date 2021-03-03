@@ -17,9 +17,11 @@ function cancelEmailChange(id) {
     return http.put(`/changerequest/cancel/${id}`);
 }
 
-export default {
+const userService = {
     updateWithoutMail,
     createEmailChange,
     confirmEmailChange,
     cancelEmailChange
 }
+
+export default userService;
