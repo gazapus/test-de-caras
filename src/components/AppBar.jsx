@@ -24,7 +24,7 @@ function TestAppBar({showItems = true}) {
                         },
                         {
                             name: "Test grupal",
-                            action: () => console.log("grupal")
+                            action: () => history.push(pathnames.generate_group)
                         },
                         {
                             name: "Cargar datos",

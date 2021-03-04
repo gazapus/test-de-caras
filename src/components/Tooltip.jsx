@@ -24,7 +24,7 @@ const StyledTooltip = styled.p`
     position: absolute;
     top: ${props => props.top}px;
     left: ${props => props.left}px;
-    max-width: 12em;
+    max-width: 18em;
     text-align: center;
     background-color: ${props => props.color};
     padding: 0.5em;
