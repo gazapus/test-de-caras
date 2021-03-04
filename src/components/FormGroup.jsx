@@ -56,6 +56,11 @@ function FormGroup({ handleSubmit, loading = false }) {
     const formik = useFormik({
         initialValues: {
             description: '',
+            institution: '',
+            grade: '',
+            max_uses: '',
+            expiration_time: new Date(2100, 1, 1),
+            country: 'España'
         },
         onSubmit: values => {
             handleSubmit(values)
@@ -139,7 +144,7 @@ function FormGroup({ handleSubmit, loading = false }) {
                             onChange={formik.handleChange}
                             value={formik.values.max_uses}
                             error={formik.errors.max_uses}
-                            placeholder={99}
+                            placeholder={'Cantidad máxima de usos de este grupo'}
                         />
                         <StyledErrorMessage>{formik.errors.max_uses}</StyledErrorMessage>
 

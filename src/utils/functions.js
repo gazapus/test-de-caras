@@ -13,6 +13,17 @@ function getTodayDateString() {
     return today;
 }
 
+function cleanEmptyFields(object) {
+    let objectCleaned = Object.assign({}, object);
+    for (let propName in objectCleaned) {
+        if (objectCleaned[propName] === null || objectCleaned[propName] === undefined || objectCleaned[propName] === '') {
+            delete objectCleaned[propName];
+        }
+    }
+    return objectCleaned
+}
+
 export {
-    getTodayDateString
+    getTodayDateString,
+    cleanEmptyFields
 }
