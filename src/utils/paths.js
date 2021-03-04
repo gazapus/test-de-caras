@@ -12,6 +12,7 @@ const paths = {
     cancel_change: '/cancel-change/:request_id',
     confirm_change: '/confirm-change/:request_id',
     universal_link: '/generate/universal',
+    generate_group: '/generate/group',
 }
 
 export default paths;

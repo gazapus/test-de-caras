@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import CancelationChange from './pages/CancelEmailChange';
 import ConfirmationChange from './pages/ConfirmEmailChange';
 import GenerateUniversal from './pages/GenerateUniversalLink';
+import GenerateGroup from './pages/GenerateGroup';
 
 function Routes() {
     return (
@@ -28,6 +29,7 @@ function Routes() {
             <Route exact path={paths.cancel_change} component={CancelationChange} />
             <Route exact path={paths.confirm_change} component={ConfirmationChange} />
             <Route exact path={paths.universal_link} component={GenerateUniversal} />
+            <Route exact path={paths.generate_group} component={GenerateGroup} />
         </Switch>
     );
 }
