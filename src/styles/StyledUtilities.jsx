@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import brakpoints from '../utils/breakpoins';
 
 const StyledShareButton = styled.a`
     font-size: 1.1.em;
@@ -17,7 +18,21 @@ const StyledShareButton = styled.a`
         cursor: pointer;
     }
 `
+const StyledContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    @media ${brakpoints.mobile} { 
+        padding: 1em;
+    }
+    @media ${brakpoints.desktop} { 
+        padding: 3em;
+    }
+`
 
 export {
-    StyledShareButton
+    StyledShareButton,
+    StyledContainer
 }

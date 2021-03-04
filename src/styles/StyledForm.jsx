@@ -36,7 +36,7 @@ const StyledInput = styled.input`
     color: #353535;
     border-color: ${props => props.error ? '#e43f3f' : '#181818'};
     border-width: 0 0 2px 0;
-    background-color: #f0f0f0;
+    background-color:  ${props => props.disabled ? '#cacaca' : '#f0f0f0'};
     border-color: #292929;
     width: 100%;
     text-align: ${props => props.align ? props.align : 'left'};
@@ -82,14 +82,29 @@ const StyledRadio = styled.input`
     }
 `
 
-const StyledCheckbox = styled.input`
-    margin-right: 1em;
+const StyledCheckbox = styled.input.attrs(props => ({
+    type: 'checkbox'
+}))`
     transform: scale(1.5);
     &:checked {
         color: blue;
     }
     &:hover {
         cursor: pointer;
+    }
+`
+
+const StyledSelect = styled.select`
+    min-width: 8em;
+    margin-left: 0.5em;
+    min-height: 3em;
+    background-color: #e7e7e7;
+    padding: 0.1em;
+    border-color: #292929;
+    border-width: 2px;
+    flex-grow: 1;
+    &:focus {
+        outline: none;
     }
 `
 
@@ -101,5 +116,6 @@ export {
     StyledRadioesContainer,
     StyledRadioContainer,
     StyledRadio,
-    StyledCheckbox
+    StyledCheckbox,
+    StyledSelect,
 }

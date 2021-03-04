@@ -11,7 +11,8 @@ const StyledH3 = styled.h3`
     font-family: ${props => props.fontFamily ? props.fontFamily : 'RobotoBold'};
     font-size: 1.6em;
     text-align: center;
-    margin: 0.7em;
+    width: 100%;
+    margin: 0.6em;
     color: ${props => props.color ? props.color : 'black'};
 `
 const StyledH4 = styled.h4`
@@ -20,6 +21,7 @@ const StyledH4 = styled.h4`
     font-weight: 500;
     margin: 0.6em;
     text-align: center;
+    width: 100%;
     color: ${props => props.color ? props.color : 'black'};
 `
 
