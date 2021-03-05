@@ -20,7 +20,7 @@ function TestAppBar({showItems = true}) {
                     subItems: [
                         {
                             name: "Test individual",
-                            action: () => history.push(pathnames.universal_link),
+                            action: () => history.push(pathnames.group_link),
                         },
                         {
                             name: "Test grupal",
