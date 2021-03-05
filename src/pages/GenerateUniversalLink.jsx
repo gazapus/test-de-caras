@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import GroupService from '../services/group.service';
-import { StyledH2, StyledP } from '../styles/StyledTitles';
+import { StyledH2, StyledH4, StyledP } from '../styles/StyledTitles';
 import { StyledShareButton } from '../styles/StyledUtilities';
 import PageContainer from '../components/PageContainer';
 import brakpoints from '../utils/breakpoins';
@@ -50,29 +50,46 @@ const StyledBox = styled.div`
     }
 `
 
-function GenerateUniversalLink() {
+function GenerateUniversalLink({ location }) {
     const [loading, setLoading] = useState(true);
     const [link, setLink] = useState("");
     const [whatsappURL, setWhatsappURL] = useState("https://api.whatsapp.com/send?text=Resuelve%20el%20test%20de%20caras%20siguiendo%20este%20enlace:%20");
     const [mailURL, setMailURL] = useState("mailto:?subject=Enlace%20para%20la%20realización%20del%20Test%20Caras-R&body=Resuelve%20el%20test%20de%20caras%20siguiendo%20este%20enlace:%20");
+    const [groupName, setGroupName] = useState('');
 
     useEffect(() => {
-        GroupService.getUniversal()
-            .then(res => {
-                let newLink = `${pathnames.server}test/start/${res.data.id}`;
-                setLink(newLink)
-                setWhatsappURL(whatsappURL + newLink.replace('#', '%23'));
-                setMailURL(mailURL + newLink);
-            })
-            .catch(err => alert(err.response.data.message))
-            .finally(() => setLoading(false))
-    }, [])
+        const URL_BASE = `${pathnames.server}test/start/`;
+        function getGroupLink() {
+            let newLink = URL_BASE + location.state.group.id;
+            setGroupName(location.state.group.description);
+            setLink(newLink);
+            setWhatsappURL(whatsappURL => whatsappURL + newLink.replace('#', '%23'));
+            setMailURL(mailURL => mailURL + newLink);
+            setLoading(false);
+        }
+        function getUniversalLink() {
+            GroupService.getUniversal()
+                .then(res => {
+                    let newLink = URL_BASE + res.data.id;
+                    setLink(newLink)
+                    setWhatsappURL(whatsappURL => whatsappURL + newLink.replace('#', '%23'));
+                    setMailURL(mailURL => mailURL + newLink);
+                    setGroupName('Tests Individuales');
+                })
+                .catch(err => alert('Hubo un error y no se pudo traer el enlace'))
+                .finally(() => setLoading(false))
+        }
+        if (location.state) { getGroupLink() } else { getUniversalLink() };
+    }, [location])
 
     return (
         <PageContainer>
             <StyledContainer>
                 <StyledBox>
-                    <StyledH2 color="#293241">Su enlace del Test:</StyledH2>
+                    <StyledH2 color="#293241">
+                        {loading ? 'Cargando' : groupName }
+                    </StyledH2>
+                    <StyledH4 color="#293241">Enlace para realizarlo:</StyledH4>
                     {
                         loading ?
                             <Spinner size="2" />
@@ -85,7 +102,7 @@ function GenerateUniversalLink() {
                     }
                     <StyledP textAlign="center" color="#202020">
                         Los resultados de las personas que realicen el test desde este enlace se guardarán
-                        tus <strong>registros</strong>, en la sección de <strong>tests individuales</strong>.
+                        tus <strong>registros</strong>, en la sección de <strong>{groupName}</strong>.
                     </StyledP>
                     {
                         !loading ?

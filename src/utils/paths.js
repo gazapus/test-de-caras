@@ -11,8 +11,8 @@ const paths = {
     profile: '/profile',
     cancel_change: '/cancel-change/:request_id',
     confirm_change: '/confirm-change/:request_id',
-    universal_link: '/generate/universal',
-    generate_group: '/generate/group',
+    group_link: '/group/getlink',
+    generate_group: '/group/new',
 }
 
 export default paths;
