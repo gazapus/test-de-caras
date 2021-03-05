@@ -19,7 +19,7 @@ const StyledH4 = styled.h4`
     font-family: ${props => props.fontFamily ? props.fontFamily : 'Roboto'};
     font-size: 1.2em;
     font-weight: 500;
-    margin: 0.6em;
+    margin: 0em 0 0.5em 0;
     text-align: center;
     width: 100%;
     color: ${props => props.color ? props.color : 'black'};

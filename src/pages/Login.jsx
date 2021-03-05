@@ -2,12 +2,9 @@ import styled from 'styled-components';
 import pathnames from '../utils/paths';
 import PageContainer from '../components/PageContainer';
 import FormLogin from '../components/FormLogin';
-import Modal from '../components/Modal';
-import brakpoints from '../utils/breakpoins';
 import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
-import Button from '../components/Button';
+import {  StyledH4 } from '../styles/StyledTitles';
 import AuthService from '../services/auth.service';
 
 const StyledTitle = styled.h3`
@@ -32,7 +29,6 @@ const StyledPseudoAnchor = styled.span`
 `
 
 function LoginPage() {
-    const [modalOpen, setModalOpen] = useState(false);
     const history = useHistory();
     const [loading, setLoading] = useState(false);
 
@@ -51,13 +47,6 @@ function LoginPage() {
         <PageContainer>
             <StyledTitle>Iniciar Sesión</StyledTitle>
             <FormLogin handleSubmit={handleSubmit} loading={loading} />
-            <Modal
-                open={modalOpen}
-                autoClose={false}
-                buttonClose={false}
-            >
-                <ModalContent handleClick={() => setModalOpen(false)} />
-            </Modal>
             <StyledH4 textAlign="center" color="#3D5A80">
                 ¿No posee cuenta?  <span> </span>
                 <Link to={pathnames.signup}>
@@ -67,42 +56,6 @@ function LoginPage() {
                 </Link>
             </StyledH4>
         </PageContainer>
-    )
-}
-
-const StyledModalContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    padding-bottom: 2em;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #ececec;
-    @media ${brakpoints.mobile} { 
-        width: 80vw;
-    }
-    @media ${brakpoints.tablet} { 
-        width: 60vw;
-    }
-    @media ${brakpoints.desktop} { 
-        width: 50vw;
-    }
-    @media ${brakpoints.desktopL} { 
-        width: 40vw;
-    }
-`
-
-function ModalContent({ handleClick }) {
-    return (
-        <StyledModalContainer>
-            <StyledH3 color='#6b0000'>¡Confirmación de registro exitosa!</StyledH3>
-            <StyledP style={{ marginBottom: '2em' }}>
-                Ahora puede iniciar sesión con su email y contraseña
-            </StyledP>
-            <Button size="small" handleClick={handleClick}>Aceptar</Button>
-        </StyledModalContainer>
     )
 }
 
