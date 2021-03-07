@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import FormUser from '../components/FormUser';
-import { useContext } from 'react';
-import { ThemeContext } from '../ContextGenerator';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import pathnames from '../utils/paths';
 import PageContainer from '../components/PageContainer';
+import { useEffect, useState } from 'react';
+import GroupService from '../services/group.service';
 
 const StyledTitle = styled.h3`
     font-family: RobotoBold;
@@ -13,26 +13,26 @@ const StyledTitle = styled.h3`
 `   
 
 function FormPage() {
-    const { setUserData, setOwner, setGroup } = useContext(ThemeContext);
     const history = useHistory();
-    let { user_id, group_id } = useParams();
+    const [groupPreferences, setGroupPreferences] = useState({});
     
     function handleSubmit(values) {
-        setUserData({
-            name: values.firstName,
-            lastname: values.lastName,
-            age: values.age,
-            sex: values.sex,
-        });
-        setOwner(user_id);
-        setGroup(group_id);
         history.push(pathnames.instrucctions);
     }
+
+    useEffect(() => {
+        let groupData = GroupService.getGroupData();
+        if(!groupData) history.push(pathnames.home)
+        setGroupPreferences(groupData)
+    }, [])
 
     return(
         <PageContainer>
             <StyledTitle>Datos Personales</StyledTitle>
-            <FormUser handleSubmit={handleSubmit}/>
+            <FormUser 
+                handleSubmit={handleSubmit} 
+                requestInstitutional={groupPreferences.requestInstitutionalInfo}
+            />
         </PageContainer>
     )
 }

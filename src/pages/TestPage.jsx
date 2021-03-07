@@ -2,14 +2,12 @@ import Test from '../components/Test';
 import styled from "styled-components";
 import PageContainer from '../components/PageContainer';
 import { StyledH3, StyledH4, StyledP } from '../styles/StyledTitles';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
 import Button from '../components/Button';
 import brakpoints from '../utils/breakpoins';
-//import useRegisteredUser from '../hooks/useRegisteredUser';
 import { useHistory } from 'react-router-dom';
 import pathnames from '../utils/paths';
-import { ThemeContext } from '../ContextGenerator';
 import TestService from '../services/test.service';
 import GroupService from '../services/group.service';
 
@@ -40,7 +38,6 @@ function TestPage() {
     const [successfullySaved, setSuccefullySaved] = useState(false);
     //const userRegistered = useRegisteredUser();
     const [selectedFaces, setSelectedFaces] = useState(Array(60).fill(-1));
-    const { userData, owner, group } = useContext(ThemeContext);
     const history = useHistory();
     const THREE_MINUTES = 180000;
 
@@ -54,7 +51,7 @@ function TestPage() {
             const calculatedResults = calculateResults();
             const diagnoses = diagnoseResults(calculatedResults);
             const result = { ...calculatedResults, ...diagnoses };
-            const personalInformation = userData;
+            const personalInformation = {};
             const institutionalInformation = {
                 institution: "esc",
                 grade: "6",
@@ -64,7 +61,7 @@ function TestPage() {
                 result,
                 personalInformation,
                 institutionalInformation,
-                owner: owner,
+                owner: 123,
                 selectedFaces
             }
         }
@@ -73,8 +70,8 @@ function TestPage() {
             TestService.create(data)
                 .then(res => {
                     const test_id = res.data.id;
-                    if (group !== '0') {
-                        GroupService.addTest(test_id, group)
+                    if (0 !== '0') {
+                        GroupService.addTest(test_id, 0)
                             .then(res => console.log(res))
                             .catch(err => {
                                 console.error(err);

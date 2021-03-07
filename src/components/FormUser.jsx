@@ -1,11 +1,11 @@
 import { useFormik } from 'formik';
 import styled from 'styled-components';
-import { 
-    StyledInput, 
-    StyledLabel, 
-    StyledErrorMessage, 
+import {
+    StyledInput,
+    StyledLabel,
+    StyledErrorMessage,
     StyledForm,
-    StyledRadio, 
+    StyledRadio,
     StyledRadioContainer,
     StyledRadioesContainer
 } from '../styles/StyledForm';
@@ -33,23 +33,32 @@ const StyledCenter = styled.div`
     margin: 2em 0 1em 0;
 `
 
-function FormUser({handleSubmit}) {
+function FormUser({ handleSubmit, requestInstitutional }) {
     const formik = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
             age: '',
-            sex: ''
+            sex: '',
+            institution: '',
+            grade: ''
         },
         onSubmit: values => {
             handleSubmit(values)
         },
         validate: values => {
             let errors = {};
-            if (values.firstName.length < 2) errors.firstName = "Nombre invalido";
-            if (values.lastName.length < 2) errors.lastName = "Apellido invalido";
-            if (values.age < 3 || values.age > 18) errors.age = "Edad invalida";
+            if (values.firstName.length < 2) errors.firstName = "Nombre muy corto";
+            if (values.lastName.length < 2) errors.lastName = "Apellido muy corto";
+            if (values.firstName.length > 50) errors.firstName = "Nombre muy largo";
+            if (values.lastName.length > 50) errors.lastName = "Apellido muy largo";
+            if (values.age < 2) errors.age = "La edad debe ser mayor";
+            if (values.age > 100) errors.age = "La edad debe ser menor";
             if (values.sex !== "male" && values.sex !== "female") errors.sex = "Debe seleccionar un sexo";
+            if (requestInstitutional && values.institution.length < 3) errors.institution = "Nombre de institución muy corto";
+            if (requestInstitutional && values.grade.length < 2) errors.grade = "Nombre del grado muy corto";
+            if (requestInstitutional && values.institution.length > 50) errors.institution = "Nombre de institución muy largo";
+            if (requestInstitutional && values.grade.length > 50) errors.grade = "Nombre del grado muy largo";
             return errors;
         },
         validateOnChange: false,
@@ -121,6 +130,34 @@ function FormUser({handleSubmit}) {
                     <StyledErrorMessage>{formik.errors.sex}</StyledErrorMessage>
                 </StyledColumn>
 
+                {
+                    requestInstitutional ?
+                        <>
+                            <StyledLabel htmlFor="institution">Institución:</StyledLabel>
+                            <StyledInput
+                                id="institution"
+                                name="institution"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.institution}
+                                error={formik.errors.institution}
+                                maxLength={50}
+                            />
+                            <StyledErrorMessage>{formik.errors.institution}</StyledErrorMessage>
+                            <StyledLabel htmlFor="grade">Grado:</StyledLabel>
+                            <StyledInput
+                                id="grade"
+                                name="grade"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.grade}
+                                error={formik.errors.grade}
+                                maxLength={50}
+                            />
+                            <StyledErrorMessage>{formik.errors.grade}</StyledErrorMessage>
+                        </>
+                        : ''
+                }
                 <StyledCenter>
                     <Button type="submit">Aceptar</Button>
                 </StyledCenter>
