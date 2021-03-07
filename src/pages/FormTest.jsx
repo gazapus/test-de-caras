@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import pathnames from '../utils/paths';
 import PageContainer from '../components/PageContainer';
 import { useEffect, useState } from 'react';
-import GroupService from '../services/group.service';
+import LocalStorageService from '../services/localstorage.service';
 
 const StyledTitle = styled.h3`
     font-family: RobotoBold;
@@ -17,11 +17,12 @@ function FormPage() {
     const [groupPreferences, setGroupPreferences] = useState({});
     
     function handleSubmit(values) {
+        LocalStorageService.setUserData(values)
         history.push(pathnames.instrucctions);
     }
 
     useEffect(() => {
-        let groupData = GroupService.getGroupData();
+        let groupData = LocalStorageService.getGroupData();
         if(!groupData) history.push(pathnames.home)
         setGroupPreferences(groupData)
     }, [])

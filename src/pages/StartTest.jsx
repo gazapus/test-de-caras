@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import GroupService from '../services/group.service';
+import LocalStorageService from '../services/localstorage.service';
 import Spinner from '../components/Spinner';
 import paths from '../utils/paths';
 
@@ -12,7 +13,7 @@ function StartTest() {
     useEffect(() => {
         GroupService.getPublicInfo(group_id)
             .then(res => {
-                GroupService.setGroupData({
+                LocalStorageService.setGroupData({
                     id: group_id,
                     requestInstitutionalInfo: res.data.requestInstitutionalInfo,
                     country: res.data.country

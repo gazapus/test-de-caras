@@ -1,10 +1,10 @@
 const paths = {
     server: process.env.REACT_APP_HOST || 'http://localhost:3000/#/',
     home: '/',
-    test: '/test/play',
+    test_start: '/test/start/:group_id',
     test_form: '/test/form',
     instrucctions: '/test/instrucctions',
-    test_user: '/test/user/:user_id/:group_id',
+    test_play: '/test/play',
     signup: '/register',
     login: '/login',
     confirmation: '/confirmation/:user_id',
@@ -13,7 +13,6 @@ const paths = {
     confirm_change: '/confirm-change/:request_id',
     group_link: '/group/getlink',
     generate_group: '/group/new',
-    test_start: '/test/start/:group_id',
 }
 
 export default paths;

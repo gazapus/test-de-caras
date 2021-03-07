@@ -55,8 +55,8 @@ function FormUser({ handleSubmit, requestInstitutional }) {
             if (values.age < 2) errors.age = "La edad debe ser mayor";
             if (values.age > 100) errors.age = "La edad debe ser menor";
             if (values.sex !== "male" && values.sex !== "female") errors.sex = "Debe seleccionar un sexo";
-            if (requestInstitutional && values.institution.length < 3) errors.institution = "Nombre de institución muy corto";
-            if (requestInstitutional && values.grade.length < 2) errors.grade = "Nombre del grado muy corto";
+            if (requestInstitutional && values.institution.length < 2) errors.institution = "Nombre de institución muy corto";
+            if (requestInstitutional && values.grade.length < 1) errors.grade = "Nombre del grado muy corto";
             if (requestInstitutional && values.institution.length > 50) errors.institution = "Nombre de institución muy largo";
             if (requestInstitutional && values.grade.length > 50) errors.grade = "Nombre del grado muy largo";
             return errors;

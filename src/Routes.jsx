@@ -19,10 +19,10 @@ function Routes() {
     return (
         <Switch>
             <Route exact path={paths.home} component={Home} />
-            <Route exact path={paths.test} component={Test} />
-            <Route path={paths.test_user} component={UserForm}/>
+            <Route exact path={paths.test_start} component={StartTest} />
             <Route path={paths.test_form} component={UserForm}/>
             <Route exact path={paths.instrucctions} component={Instrucctions} />
+            <Route exact path={paths.test_play} component={Test} />
             <Route exact path={paths.signup} component={Signup} />
             <Route exact path={paths.login} component={Login} />
             <Route exact path={paths.confirmation} component={Confirmation} />
@@ -31,7 +31,6 @@ function Routes() {
             <Route exact path={paths.confirm_change} component={ConfirmationChange} />
             <Route exact path={paths.group_link} component={GenerateUniversal} />
             <Route exact path={paths.generate_group} component={GenerateGroup} />
-            <Route exact path={paths.test_start} component={StartTest} />
         </Switch>
     );
 }
