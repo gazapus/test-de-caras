@@ -13,6 +13,7 @@ import CancelationChange from './pages/CancelEmailChange';
 import ConfirmationChange from './pages/ConfirmEmailChange';
 import GenerateUniversal from './pages/GenerateUniversalLink';
 import GenerateGroup from './pages/GenerateGroup';
+import StartTest from './pages/StartTest';
 
 function Routes() {
     return (
@@ -20,7 +21,7 @@ function Routes() {
             <Route exact path={paths.home} component={Home} />
             <Route exact path={paths.test} component={Test} />
             <Route path={paths.test_user} component={UserForm}/>
-            <Route path={paths.userForm} component={UserForm}/>
+            <Route path={paths.test_form} component={UserForm}/>
             <Route exact path={paths.instrucctions} component={Instrucctions} />
             <Route exact path={paths.signup} component={Signup} />
             <Route exact path={paths.login} component={Login} />
@@ -30,6 +31,7 @@ function Routes() {
             <Route exact path={paths.confirm_change} component={ConfirmationChange} />
             <Route exact path={paths.group_link} component={GenerateUniversal} />
             <Route exact path={paths.generate_group} component={GenerateGroup} />
+            <Route exact path={paths.test_start} component={StartTest} />
         </Switch>
     );
 }
