@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import PageContainer from '../components/PageContainer';
-import { ThemeContext } from '../ContextGenerator';
-import { useContext } from 'react';
 import styled from 'styled-components';
 
 const StyledTitle = styled.h1`
@@ -17,8 +15,6 @@ const StyledButton = styled.h2`
 `
 
 function Home() {
-    const { setUserData } = useContext(ThemeContext);
-    setUserData(null)
     return (
         <PageContainer >
             <StyledTitle>Test de Caras</StyledTitle>

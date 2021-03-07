@@ -1,6 +1,5 @@
 import { HashRouter as Router } from "react-router-dom";
 import Routes from './Routes';
-import ThemeContext from './ContextGenerator';
 import { createGlobalStyle } from 'styled-components';
 import RobotoRegular from './fonts/Roboto-Regular.ttf';
 import RobotoBold from './fonts/Roboto-Bold.ttf';
@@ -35,11 +34,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <ThemeContext>
         <Router>
           <Routes />
         </Router>
-      </ThemeContext>
     </>
   );
 }

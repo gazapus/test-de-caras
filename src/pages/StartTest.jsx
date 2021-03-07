@@ -12,14 +12,12 @@ function StartTest() {
     useEffect(() => {
         GroupService.getPublicInfo(group_id)
             .then(res => {
-                GroupService.setGroupId(group_id);
-                console.log(res.data);
-                history.push({
-                    pathname: paths.test_form,
-                    state: {
-                        requestInstitutionalInfo: res.data.requestInstitutionalInfo
-                    }
-                })
+                GroupService.setGroupData({
+                    id: group_id,
+                    requestInstitutionalInfo: res.data.requestInstitutionalInfo,
+                    country: res.data.country
+                });
+                history.push(paths.test_form)
             })
             .catch(err => setMessage(err.response.data.message))
     })
