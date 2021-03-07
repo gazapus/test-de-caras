@@ -13,21 +13,10 @@ function create(data) {
     return http.post("/test/create", data);
 };
 
-function setUserData(data) {
-    localStorage.setUserData('userData', data);
-}
-
-function getUserData() {
-    let userData = localStorage.getItem('userData');
-    return userData;
-}
-
 let methods = {
     getAll,
     get,
-    create,
-    getUserData,
-    setUserData
+    create
 };
 
 export default methods;

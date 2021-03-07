@@ -17,15 +17,6 @@ function getPublicInfo(id) {
     return http.get(`/group/get/basic/${id}`);
 };
 
-function setGroupData(data) {
-    sessionStorage.setItem('group', JSON.stringify(data));
-}
-
-function getGroupData() {
-    let groupData = sessionStorage.getItem('group');
-    return JSON.parse(groupData);
-}
-
 function create(data) {
     return http.post("/group/create", data, {headers: authHeader()});
 };
@@ -40,9 +31,7 @@ let methods = {
     create,
     addTest,
     getUniversal,
-    getPublicInfo,
-    setGroupData,
-    getGroupData
+    getPublicInfo
 };
 
 export default methods;
