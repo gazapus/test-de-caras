@@ -44,7 +44,6 @@ function TestPage() {
                     selectedFaces: selectedFaces
                 }
                 let testCreated = await TestService.create(requestBody);
-                console.log(testCreated)
                 await GroupService.addTest(testCreated.data.id, group_id);
                 setSuccefullySaved(true);
                 LocalStorageService.removeGroupData();
