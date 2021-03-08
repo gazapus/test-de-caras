@@ -36,8 +36,8 @@ const StyledCenter = styled.div`
 function FormUser({ handleSubmit, requestInstitutional }) {
     const formik = useFormik({
         initialValues: {
-            firstName: '',
-            lastName: '',
+            name: '',
+            lastname: '',
             age: '',
             sex: '',
             institution: '',
@@ -48,10 +48,10 @@ function FormUser({ handleSubmit, requestInstitutional }) {
         },
         validate: values => {
             let errors = {};
-            if (values.firstName.length < 2) errors.firstName = "Nombre muy corto";
-            if (values.lastName.length < 2) errors.lastName = "Apellido muy corto";
-            if (values.firstName.length > 50) errors.firstName = "Nombre muy largo";
-            if (values.lastName.length > 50) errors.lastName = "Apellido muy largo";
+            if (values.name.length < 2) errors.name = "Nombre muy corto";
+            if (values.lastname.length < 2) errors.lastname = "Apellido muy corto";
+            if (values.name.length > 50) errors.name = "Nombre muy largo";
+            if (values.lastname.length > 50) errors.lastname = "Apellido muy largo";
             if (values.age < 2) errors.age = "La edad debe ser mayor";
             if (values.age > 100) errors.age = "La edad debe ser menor";
             if (values.sex !== "male" && values.sex !== "female") errors.sex = "Debe seleccionar un sexo";
@@ -68,29 +68,29 @@ function FormUser({ handleSubmit, requestInstitutional }) {
     return (
         <FormContainer>
             <StyledForm onSubmit={formik.handleSubmit}>
-                <StyledLabel htmlFor="firstName">Nombre:</StyledLabel>
+                <StyledLabel htmlFor="name">Nombre:</StyledLabel>
                 <StyledInput
-                    id="firstName"
-                    name="firstName"
+                    id="name"
+                    name="name"
                     type="text"
                     onChange={formik.handleChange}
-                    value={formik.values.firstName}
+                    value={formik.values.name}
                     maxLength={40}
-                    error={formik.errors.firstName}
+                    error={formik.errors.name}
                 />
-                <StyledErrorMessage>{formik.errors.firstName}</StyledErrorMessage>
+                <StyledErrorMessage>{formik.errors.name}</StyledErrorMessage>
 
-                <StyledLabel htmlFor="lastName">Apellido:</StyledLabel>
+                <StyledLabel htmlFor="lastname">Apellido:</StyledLabel>
                 <StyledInput
-                    id="lastName"
-                    name="lastName"
+                    id="lastname"
+                    name="lastname"
                     type="text"
                     onChange={formik.handleChange}
-                    value={formik.values.lastName}
-                    error={formik.errors.lastName}
+                    value={formik.values.lastname}
+                    error={formik.errors.lastname}
                     maxLength={40}
                 />
-                <StyledErrorMessage>{formik.errors.lastName}</StyledErrorMessage>
+                <StyledErrorMessage>{formik.errors.lastname}</StyledErrorMessage>
 
                 <StyledLabel htmlFor="age">Edad:</StyledLabel>
                 <StyledInput

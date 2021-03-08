@@ -15,6 +15,7 @@ function Instrucctions() {
         let groupData = LocalStorageService.getGroupData();
         let userData = LocalStorageService.getUserData();
         if(!groupData || !userData) history.push(pathnames.home);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const [currentInstrucction, setCurrentInstrucction] = useState(0);

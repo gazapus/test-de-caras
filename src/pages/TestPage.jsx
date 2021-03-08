@@ -9,6 +9,7 @@ import brakpoints from '../utils/breakpoins';
 import { useHistory } from 'react-router-dom';
 import pathnames from '../utils/paths';
 import TestService from '../services/test.service';
+import GroupService from '../services/group.service';
 import LocalStorageService from '../services/localstorage.service';
 
 const StyledContainer = styled.div`
@@ -23,20 +24,37 @@ function TestPage() {
     const [successfullySaved, setSuccefullySaved] = useState(false);
     const [selectedFaces, setSelectedFaces] = useState(Array(60).fill(-1));
     const history = useHistory();
-    const THREE_MINUTES = 180000;
+    const THREE_MINUTES = 10000;
 
     useEffect(() => {
         let groupData = LocalStorageService.getGroupData();
         let userData = LocalStorageService.getUserData();
-        if(!groupData || !userData) history.push(pathnames.home);
+        if (!groupData || !userData) history.push(pathnames.home);
         setTimeout(() => setTestFinished(true), THREE_MINUTES);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    }, [])
 
     useEffect(() => {
-        if(testFinished){
-            console.log(selectedFaces);
+        async function saveTest() {
+            try {
+                const group_id = LocalStorageService.getGroupData().id;
+                const requestBody = {
+                    user: LocalStorageService.getUserData(),
+                    group_id: group_id,
+                    selectedFaces: selectedFaces
+                }
+                let testCreated = await TestService.create(requestBody);
+                console.log(testCreated)
+                await GroupService.addTest(testCreated.data.id, group_id);
+                setSuccefullySaved(true);
+                LocalStorageService.removeGroupData();
+                LocalStorageService.removeUserData();
+            } catch (err) {
+                alert(err.response.data.message)
+            }
         }
+        if (testFinished) saveTest();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [testFinished])
 
     const finishTest = () => history.push(pathnames.home)
@@ -53,8 +71,8 @@ function TestPage() {
                 </StyledH4>
                 <Test handleSelect={setSelectedFaces} />
             </StyledContainer>
-            <Modal open={testFinished} autoClose={false}>
-                <ModalContent handleClick={finishTest} closeEnabled={successfullySaved} />
+            <Modal open={testFinished} autoClose={false} buttonClose={false}>
+                <ModalContent handleClick={finishTest} closeEnabled={successfullySaved } />
             </Modal>
         </PageContainer>
     )

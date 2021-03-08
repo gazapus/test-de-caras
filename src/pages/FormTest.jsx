@@ -25,12 +25,13 @@ function FormPage() {
         let groupData = LocalStorageService.getGroupData();
         if(!groupData) history.push(pathnames.home)
         setGroupPreferences(groupData)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return(
         <PageContainer>
             <StyledTitle>Datos Personales</StyledTitle>
-            <FormUser 
+            <FormUser
                 handleSubmit={handleSubmit} 
                 requestInstitutional={groupPreferences.requestInstitutionalInfo}
             />
